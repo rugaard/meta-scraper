@@ -24,7 +24,7 @@ abstract class AbstractTestCase extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp()
     {
         $this->scraper = new Scraper;
     }
@@ -34,7 +34,7 @@ abstract class AbstractTestCase extends TestCase
      *
      * @return void
      */
-    public function tearDown() : void
+    public function tearDown()
     {
         unset($this->scraper);
     }

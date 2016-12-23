@@ -24,7 +24,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testClientIsImplementingClientInterface() : void
+    public function testClientIsImplementingClientInterface()
     {
         $this->assertInstanceOf(GuzzleClientInterface::class, $this->scraper->getClient());
     }
@@ -34,7 +34,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testMetaTagsIsAnEmptyCollection() : void
+    public function testMetaTagsIsAnEmptyCollection()
     {
         $this->assertInstanceOf(Collection::class, $this->scraper->getMetaTags());
         $this->assertTrue($this->scraper->getMetaTags()->isEmpty());
@@ -45,7 +45,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testExceptionOnInvalidUrl() : void
+    public function testExceptionOnInvalidUrl()
     {
         $this->expectException(InvalidUrlException::class);
         $this->scraper->load('this-is-not-a-url');
@@ -56,7 +56,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testExceptionOnFailedRequest() : void
+    public function testExceptionOnFailedRequest()
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
             new GuzzleRequestException('Error communicating with server', new GuzzleRequest('GET', '127.0.0.1'))
@@ -71,7 +71,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testMethodExtractByTag() : void
+    public function testMethodExtractByTag()
     {
         $mockedScraper = $this->createPartialMock(get_class($this->scraper), ['getContentBodyAsString']);
         $mockedScraper->method('getContentBodyAsString')->willReturn($this->getMockedResponse());
@@ -90,7 +90,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testExceptionNoItemsFoundInExtractByTag() : void
+    public function testExceptionNoItemsFoundInExtractByTag()
     {
         $mockedScraper = $this->createPartialMock(get_class($this->scraper), ['getContentBodyAsString']);
         $mockedScraper->method('getContentBodyAsString')->willReturn($this->getMockedResponse());
@@ -104,7 +104,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testMethodExtractAttributesFromTag() : void
+    public function testMethodExtractAttributesFromTag()
     {
         $attributes = $this->invokeMethod($this->scraper, 'extractAttributesFromTag', [' property="og:title" content="This is an Open Graph title"']);
 
@@ -121,7 +121,7 @@ class ScraperTest extends AbstractTestCase
      *
      * @return void
      */
-    public function testExceptionNoItemsFoundInExtractAttributesFromTag() : void
+    public function testExceptionNoItemsFoundInExtractAttributesFromTag()
     {
         $this->expectException(NoItemsException::class);
         $this->invokeMethod($this->scraper, 'extractAttributesFromTag', ['']);
