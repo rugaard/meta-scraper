@@ -3,11 +3,8 @@ declare (strict_types = 1);
 
 namespace Tests;
 
-use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
-use GuzzleHttp\Handler\MockHandler as GuzzleMockHandler;
-use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Collection;
@@ -138,9 +135,7 @@ class ScraperTest extends AbstractTestCase
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
             new GuzzleResponse(200, [], $this->getMockedResponse())
-        ]));
-
-        $this->scraper->load('http://127.0.0.1');
+        ]))->load('http://127.0.0.1');
 
         $this->assertInstanceOf(Collection::class, $this->scraper->getMetaTags());
         $this->assertFalse($this->scraper->getMetaTags()->isEmpty());
@@ -148,32 +143,20 @@ class ScraperTest extends AbstractTestCase
     }
 
     /**
-     * Create a Guzzle Client with mocked responses.
+     * Test method [getAllByNamespace].
      *
-     * @param  array $responses
-     * @return \GuzzleHttp\Client
+     * @return void
      */
-    private function createMockedGuzzleClient(array $responses) : GuzzleClient
+    public function testMethodGetAllByNamespace()
     {
-        return new GuzzleClient([
-            'handler' => GuzzleHandlerStack::create(
-                new GuzzleMockHandler($responses)
-            )
-        ]);
-    }
+        $this->scraper->setClient($this->createMockedGuzzleClient([
+            new GuzzleResponse(200, [], $this->getMockedResponse())
+        ]))->load('http://127.0.0.1');
 
-    /**
-     * Get a mocked response containing valid <meta> tags.
-     *
-     * @return string
-     */
-    private function getMockedResponse() : string
-    {
-        return <<<HTML
-<html><head>
-    <title>Mocked response</title>
-    <meta property="og:title" content="This is an Open Graph title">
-</head><body></body></html>
-HTML;
+        $tags = $attributes = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['og']);
+
+        $this->assertInstanceOf(Collection::class, $tags);
+        $this->assertFalse($tags->isEmpty());
+        $this->assertInstanceOf(Meta::class, $tags->first());
     }
 }

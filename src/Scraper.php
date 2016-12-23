@@ -93,7 +93,7 @@ class Scraper
      * @param  string $namespace
      * @return \Illuminate\Support\Collection
      */
-    private function getAllByNamespace($namespace) : Collection
+    protected function getAllByNamespace($namespace) : Collection
     {
         return $this->getMetaTags()->reject(function($item) use ($namespace) {
             /** @var \Rugaard\MetaScraper\Meta $item  **/
