@@ -143,7 +143,7 @@ class MetaTest extends AbstractTestCase
             new GuzzleResponse(200, [], $this->getMockedResponse())
         ]))->load('http://127.0.0.1');
 
-        $this->meta = $this->scraper->getMetaTags()->first();
+        $this->meta = $this->scraper->getMetaTags()->slice(1, 1)->first();
     }
 
     /**

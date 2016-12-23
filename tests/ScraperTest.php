@@ -78,9 +78,6 @@ class ScraperTest extends AbstractTestCase
         $tags = $this->invokeMethod($mockedScraper, 'extractByTag', ['meta']);
 
         $this->assertNotEmpty($tags);
-        $this->assertEquals([
-            ['property' => 'og:title', 'content' => 'This is an Open Graph title']
-        ], $tags);
     }
 
     /**
