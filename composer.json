@@ -1,0 +1,43 @@
+{
+  "name": "rugaard/meta-scraper",
+  "type": "library",
+  "description": "Scrape URL's for metadata, like Open Graph, Twitter Cards and more.",
+  "keywords": [
+    "rugaard",
+    "scraper",
+    "shareable",
+    "links",
+    "open graph",
+    "facebook",
+    "twitter"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Morten Rugaard",
+      "email": "morten@rugaard.me",
+      "homepage": "http://github.com/rugaard"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "tightenco/collect": "^5.3",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rugaard\\MetaScraper\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "phpunit": "./vendor/bin/phpunit;"
+  }
+}
