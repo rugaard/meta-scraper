@@ -126,8 +126,6 @@ class Meta
      */
     public function getNamespace() : string
     {
-        // Make sure tag has a namespace
-        // before we try to return it.
         if (!$this->hasNamespace()) {
             throw new AttributeNotFoundException('Meta tag does not have a namespace.', 500);
         }

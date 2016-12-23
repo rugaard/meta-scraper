@@ -4,6 +4,7 @@ declare (strict_types = 1);
 namespace Tests;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 
 /**
  * Class MetaTest.
@@ -41,6 +42,18 @@ class MetaTest extends AbstractTestCase
     }
 
     /**
+     * Test that an exception is thrown when method [getAttribute]
+     * does not find the expected attribute.
+     *
+     * @return void
+     */
+    public function testExceptionAttributeNotFoundExceptionInGetAttribute()
+    {
+        $this->expectException(AttributeNotFoundException::class);
+        $this->meta->getAttribute('non-existing-attribute');
+    }
+
+    /**
      * Test method [hasNamespace].
      *
      * @return void
@@ -61,6 +74,21 @@ class MetaTest extends AbstractTestCase
 
         $this->assertNotEmpty($namespace);
         $this->assertEquals('og', $namespace);
+    }
+
+    /**
+     * Test that an exception is thrown when method [getNamespace]
+     * does not find the expected attribute.
+     *
+     * @return void
+     */
+    public function testExceptionAttributeNotFoundExceptionInGetNamespace()
+    {
+        $mockedMeta = $this->createPartialMock(get_class($this->meta), ['hasNamespace']);
+        $mockedMeta->method('hasNamespace')->willReturn(false);
+
+        $this->expectException(AttributeNotFoundException::class);
+        $mockedMeta->getNamespace();
     }
 
     /**

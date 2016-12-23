@@ -84,7 +84,7 @@ abstract class AbstractTestCase extends TestCase
         return <<<HTML
 <html><head>
     <title>Mocked response</title>
-    <meta property="og:title" content="This is an Open Graph title">
+    <meta property="og:title" content="This is an Open Graph title" data-test="true">
 </head><body></body></html>
 HTML;
     }
