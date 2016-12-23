@@ -3,7 +3,6 @@ declare (strict_types = 1);
 
 namespace Rugaard\MetaScraper;
 
-use Throwable;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
@@ -96,7 +95,7 @@ class Scraper
      */
     private function getAllByNamespace($namespace) : Collection
     {
-        return $this->metaTags->reject(function($item) use ($namespace) {
+        return $this->getMetaTags()->reject(function($item) use ($namespace) {
             /** @var \Rugaard\MetaScraper\Meta $item  **/
             return !$item->hasNamespace() || $item->getNamespace() != $namespace;
         });
@@ -113,7 +112,6 @@ class Scraper
     {
         // Extract all tags by expression
         preg_match_all(sprintf('#<%s(.*?)\\/?>#i', $tag), $this->getContentBodyAsString(), $results);
-        //var_dump($results); die;
         if (!$results || !count($results[0])) {
             throw new NoItemsException(sprintf('No elements found with tag [%s]', $tag), 204);
         }
@@ -153,8 +151,6 @@ class Scraper
         foreach ($results as $attribute) {
             // We're going to group all "data-" attributes
             if (strstr($attribute[1], 'data-') !== false) {
-                #$attributes['data'][str_replace('data-', '', $attribute[1])] = $attribute[2];
-                // @todo Figure out a way to ignore "data-" on certain tags (e.g. <meta>)
                 continue;
             }
 
@@ -172,7 +168,7 @@ class Scraper
      */
     public function getContentBodyAsString() : string
     {
-        return $this->content instanceof PsrMessageResponseInterface ? (string) $this->content->getBody() : '';
+        return (string) $this->content->getBody();
     }
 
     /**
@@ -211,7 +207,7 @@ class Scraper
      * getDebugContentBody.
      *
      * @return string
-     */
+     *
     public function getDebugContentBody() : string
     {
         return '
@@ -309,4 +305,5 @@ class Scraper
 </body>
 </html>';
     }
+    */
 }

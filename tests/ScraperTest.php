@@ -9,10 +9,12 @@ use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use GuzzleHttp\Handler\MockHandler as GuzzleMockHandler;
 use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Exceptions\InvalidUrlException;
 use Rugaard\MetaScraper\Exceptions\NoItemsException;
 use Rugaard\MetaScraper\Exceptions\RequestFailedException;
+use Rugaard\MetaScraper\Meta;
 
 /**
  * Class ScraperTest.
@@ -128,12 +130,30 @@ class ScraperTest extends AbstractTestCase
     }
 
     /**
+     * Test method [load].
+     *
+     * @return void
+     */
+    public function testMethodLoad()
+    {
+        $this->scraper->setClient($this->createMockedGuzzleClient([
+            new GuzzleResponse(200, [], $this->getMockedResponse())
+        ]));
+
+        $this->scraper->load('http://127.0.0.1');
+
+        $this->assertInstanceOf(Collection::class, $this->scraper->getMetaTags());
+        $this->assertFalse($this->scraper->getMetaTags()->isEmpty());
+        $this->assertInstanceOf(Meta::class, $this->scraper->getMetaTags()->first());
+    }
+
+    /**
      * Create a Guzzle Client with mocked responses.
      *
      * @param  array $responses
      * @return \GuzzleHttp\Client
      */
-    protected function createMockedGuzzleClient(array $responses)
+    private function createMockedGuzzleClient(array $responses) : GuzzleClient
     {
         return new GuzzleClient([
             'handler' => GuzzleHandlerStack::create(
