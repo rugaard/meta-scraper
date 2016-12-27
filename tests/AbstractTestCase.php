@@ -87,6 +87,17 @@ abstract class AbstractTestCase extends TestCase
     <meta name="description" content="This is a mocked description">
     <meta property="og:title" content="This is an Open Graph title" data-test="true">
     <meta property="og:description" content="This is an Open Graph description">
+    <meta property="og:locale" content="da_DK">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:rich_attachment" content="true">
+    <meta property="og:updated_time" content="2017-01-01T00:00:00+0000">
+    <meta property="og:restrictions:age" content="18+">
+    <meta property="og:restrictions:country:allowed" content="dk">
+    <meta property="og:restrictions:country:allowed" content="sv">
+    <meta property="og:restrictions:country:allowed" content="no">
+    <meta property="og:restrictions:country:disallowed" content="us">
+    <meta property="og:restrictions:country:disallowed" content="gb">
+    <meta property="og:restrictions:content" content="alcohol">
     <meta property="og:image" content="http://example.com/image.jpg">
     <meta property="og:image:secure_url" content="https://example.com/image.jpg">
     <meta property="og:image:type" content="image/jpeg">

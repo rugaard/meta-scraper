@@ -37,6 +37,8 @@ class OpenGraphTest extends AbstractTestCase
         $this->assertNotEmpty($data);
         $this->assertArrayHasKey('title', $data);
         $this->assertArrayHasKey('description', $data);
+        $this->assertArrayHasKey('locale', $data);
+        $this->assertArrayHasKey('restrictions', $data);
         $this->assertArrayHasKey('image', $data);
         $this->assertArrayHasKey('video', $data);
         $this->assertArrayHasKey('audio', $data);
@@ -57,6 +59,13 @@ class OpenGraphTest extends AbstractTestCase
         $this->assertNotEmpty($data);
         $this->assertArrayHasKey('title', $data);
         $this->assertArrayHasKey('description', $data);
+        $this->assertArraySubset(['locale' => ['da_DK', 'en_GB']], $data);
+        $this->assertArraySubset(['restrictions' => [
+            'age' => '18+',
+            'country_allowed' => ['dk', 'sv', 'no'],
+            'country_disallowed' => ['us', 'gb'],
+            'content' => 'alcohol',
+        ]], $data);
     }
 
     /**
