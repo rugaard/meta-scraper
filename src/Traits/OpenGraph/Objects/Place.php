@@ -18,7 +18,7 @@ class Place extends AbstractObject
      * @param  \Illuminate\Support\Collection $data
      * @return void
      */
-    public function parse(Collection $data) : void
+    public function parse(Collection $data)
     {
         // Container.
         $propertyGroup = [];

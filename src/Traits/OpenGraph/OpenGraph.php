@@ -62,7 +62,7 @@ trait OpenGraph
      * @param  \Illuminate\Support\Collection $tags
      * @return void
      */
-    private function parseOpenGraphStandard(Collection $tags): void
+    private function parseOpenGraphStandard(Collection $tags)
     {
         foreach ($this->getOpenGraphStandardProperties() as $property) {
             // Loop through our collection of tags  and carefully
@@ -119,7 +119,7 @@ trait OpenGraph
      * @param  \Illuminate\Support\Collection $tags
      * @return void
      */
-    private function parseOpenGraphMedia(Collection $tags): void
+    private function parseOpenGraphMedia(Collection $tags)
     {
         foreach ($this->getOpenGraphMediaTypes() as $mediaType => $mediaTypeClass) {
             // Loop through our collection of tags  and carefully
@@ -176,7 +176,7 @@ trait OpenGraph
      *
      * @return void
      */
-    private function parseOpenGraphObjects() : void
+    private function parseOpenGraphObjects()
     {
         foreach ($this->getOpenGraphObjectTypes() as $objectType => $objectTypeClass) {
             /** @var \Illuminate\Support\Collection $tags */
