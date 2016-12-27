@@ -53,7 +53,7 @@ trait OpenGraph
         // Parse all Open Graph object types
         $this->parseOpenGraphObjects();
 
-        return $this->openGraph;
+        return $this->getOpenGraph();
     }
 
     /**
@@ -187,6 +187,16 @@ trait OpenGraph
 
             $this->openGraph['objects'][$objectType] = new $objectTypeClass($tags);
         }
+    }
+
+    /**
+     * Get parsed Open Graph data.
+     *
+     * @return array
+     */
+    public function getOpenGraph() : array
+    {
+        return $this->openGraph;
     }
 
     /**
