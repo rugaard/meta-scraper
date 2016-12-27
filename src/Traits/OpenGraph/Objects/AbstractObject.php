@@ -30,5 +30,5 @@ abstract class AbstractObject
      * @param  \Illuminate\Support\Collection $data
      * @return void
      */
-    abstract public function parse(Collection $data)
+    abstract public function parse(Collection $data);
 }
