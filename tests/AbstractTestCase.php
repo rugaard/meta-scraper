@@ -114,6 +114,8 @@ abstract class AbstractTestCase extends TestCase
     <meta property="og:audio:secure_url" content="https://example.com/audio.mp3">
     <meta property="og:audio:type" content="audio/mpeg">
     <meta property="og:audio" content="http://example.com/alternative.mp3">
+    <meta property="place:location:latitude"  content="55.676098"> 
+    <meta property="place:location:longitude" content="12.568337">
 </head><body></body></html>
 HTML;
     }

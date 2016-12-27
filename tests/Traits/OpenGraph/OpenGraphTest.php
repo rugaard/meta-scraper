@@ -42,6 +42,7 @@ class OpenGraphTest extends AbstractTestCase
         $this->assertArrayHasKey('image', $data);
         $this->assertArrayHasKey('video', $data);
         $this->assertArrayHasKey('audio', $data);
+        $this->assertArrayHasKey('objects', $data);
     }
 
     /**
