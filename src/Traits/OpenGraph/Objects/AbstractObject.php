@@ -50,7 +50,7 @@ abstract class AbstractObject
         // If $name does not start with "get"
         // then we do not support the request.
         if (substr($name, 0, 3) != 'get') {
-            throw new MethodNotFoundException((sprintf('Method [%s] not found.', $name), 500);
+            throw new MethodNotFoundException(sprintf('Method [%s] not found.', $name), 500);
         }
 
         // Convert name into a snake_case attribute.

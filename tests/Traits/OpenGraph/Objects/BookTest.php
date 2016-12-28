@@ -4,6 +4,8 @@ declare (strict_types = 1);
 namespace Tests\Traits\OpenGraph\Objects;
 
 use DateTime;
+use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
+use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Book;
 
 /**
@@ -158,6 +160,29 @@ class BookTest extends AbstractOpenGraphObjectTestCase
         $this->assertNotEmpty($sample);
         $this->assertNotFalse(filter_var($sample, FILTER_VALIDATE_URL));
         $this->assertEquals('http://example.com/book-sample', $sample);
+    }
+
+    /**
+     * Test magic [__call] method.
+     *
+     * @return void
+     */
+    public function testBookInvalidGetMethod()
+    {
+        $this->expectException(MethodNotFoundException::class);
+        $this->book->callNoneExistingGetMethod();
+    }
+
+    /**
+     * Test exception is thrown when trying to retrieve
+     * a non-existing attribute.
+     *
+     * @return void
+     */
+    public function testBookInvalidAttribute()
+    {
+        $this->expectException(AttributeNotFoundException::class);
+        $this->book->getNonExistingAttribute();
     }
 
     /**
