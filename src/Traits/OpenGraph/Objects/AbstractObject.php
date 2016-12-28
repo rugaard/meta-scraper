@@ -12,6 +12,8 @@ use Illuminate\Support\Collection;
  */
 abstract class AbstractObject
 {
+    protected $attributes = [];
+
     /**
      * AbstractObject constructor.
      *
@@ -31,4 +33,18 @@ abstract class AbstractObject
      * @return void
      */
     abstract public function parse(Collection $data);
+
+    public function __call($name, $arguments)
+    {
+        if (substr($name, 0, 3) != 'get') {
+            die('Method found');
+        }
+
+        $attribute = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", substr($name, 3)));
+        if (!array_key_exists($attribute, $this->attributes)) {
+            die('Attribute does not exist');
+        }
+
+        return $this->attributes[$attribute];
+    }
 }

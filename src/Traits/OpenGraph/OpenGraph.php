@@ -21,9 +21,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Video as ObjectVideo;
 /**
  * Trait OpenGraph.
  *
- * @link http://ogp.me
  * @package Rugaard\MetaScraper\Traits\OpenGraph
- * @method  Collection getAllByNamespace($namespace)
  */
 trait OpenGraph
 {

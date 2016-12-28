@@ -36,5 +36,7 @@ abstract class AbstractOpenGraphObjectTestCase extends AbstractTestCase
         $this->trait->method('getAllByNamespace')->will($this->returnCallback(function ($namespace) {
             return $this->invokeMethod($this->scraper, 'getAllByNamespace', [$namespace]);
         }));
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
     }
 }
