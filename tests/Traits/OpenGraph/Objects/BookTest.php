@@ -9,7 +9,7 @@ use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Book;
 
 /**
- * Class AbstractOpenGraphObjectTestCase.
+ * Class BookTest.
  */
 class BookTest extends AbstractOpenGraphObjectTestCase
 {
@@ -20,6 +20,11 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      */
     protected $book;
 
+    /**
+     * Test that object is a Book instance.
+     *
+     * @return void
+     */
     public function testIsBookInstance()
     {
         $this->assertNotEmpty($this->book);
@@ -31,12 +36,15 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookAuthors()
+    public function testAuthorReferences()
     {
         $authors = $this->book->getAuthor();
 
         $this->assertNotEmpty($authors);
+        $this->assertInternalType('array', $authors);
         $this->assertCount(2, $authors);
+        $this->assertNotFalse(filter_var($authors[0], FILTER_VALIDATE_URL));
+        $this->assertNotFalse(filter_var($authors[1], FILTER_VALIDATE_URL));
         $this->assertEquals([
             'http://example.com/author-1',
             'http://example.com/author-2'
@@ -44,16 +52,52 @@ class BookTest extends AbstractOpenGraphObjectTestCase
     }
 
     /**
+     * Test method [getGender].
+     *
+     * @return void
+     */
+    public function testAuthorGender()
+    {
+        $gender = $this->book->getGender();
+
+        $this->assertNotEmpty($gender);
+        $this->assertEquals('male', $gender);
+    }
+
+    /**
+     * Test method [getBook].
+     *
+     * @return void
+     */
+    public function testBookReferences()
+    {
+        $books = $this->book->getBook();
+
+        $this->assertNotEmpty($books);
+        $this->assertInternalType('array', $books);
+        $this->assertCount(2, $books);
+        $this->assertNotFalse(filter_var($books[0], FILTER_VALIDATE_URL));
+        $this->assertNotFalse(filter_var($books[1], FILTER_VALIDATE_URL));
+        $this->assertEquals([
+            'http://example.com/book-1',
+            'http://example.com/book-2'
+        ], $books);
+    }
+
+    /**
      * Test method [getGenre].
      *
      * @return void
      */
-    public function testBookGenres()
+    public function testGenreReferences()
     {
         $genres = $this->book->getGenre();
 
         $this->assertNotEmpty($genres);
+        $this->assertInternalType('array', $genres);
         $this->assertCount(2, $genres);
+        $this->assertNotFalse(filter_var($genres[0], FILTER_VALIDATE_URL));
+        $this->assertNotFalse(filter_var($genres[1], FILTER_VALIDATE_URL));
         $this->assertEquals([
             'http://example.com/genre-1',
             'http://example.com/genre-2'
@@ -65,7 +109,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookInitialReleaseDate()
+    public function testInitialReleaseDate()
     {
         $initReleaseDate = $this->book->getInitialReleaseDate();
 
@@ -79,7 +123,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookIsbn()
+    public function testIsbn()
     {
         $isbn = $this->book->getIsbn();
 
@@ -93,11 +137,12 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookLanguage()
+    public function testLanguage()
     {
         $language = $this->book->getLanguage();
 
         $this->assertNotEmpty($language);
+        $this->assertInternalType('array', $language);
         $this->assertCount(1, $language);
         $this->assertEquals(['en_GB'], $language);
     }
@@ -107,7 +152,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookPageCount()
+    public function testPageCount()
     {
         $pageCount = $this->book->getPageCount();
 
@@ -121,11 +166,12 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookRating()
+    public function testRating()
     {
         $rating = $this->book->getRating();
 
         $this->assertNotEmpty($rating);
+        $this->assertInternalType('array', $rating);
         $this->assertArrayHasKey('value', $rating);
         $this->assertArrayHasKey('scale', $rating);
         $this->assertArraySubset([
@@ -139,7 +185,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookReleaseDate()
+    public function testReleaseDate()
     {
         $releaseDate = $this->book->getReleaseDate();
 
@@ -153,7 +199,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookSample()
+    public function testSampleUrl()
     {
         $sample = $this->book->getSample();
 
@@ -163,11 +209,25 @@ class BookTest extends AbstractOpenGraphObjectTestCase
     }
 
     /**
+     * Test method [getOfficialSite].
+     *
+     * @return void
+     */
+    public function testOfficialSiteUrl()
+    {
+        $officialSite = $this->book->getOfficialSite();
+
+        $this->assertNotEmpty($officialSite);
+        $this->assertNotFalse(filter_var($officialSite, FILTER_VALIDATE_URL));
+        $this->assertEquals('http://example.com/official-site', $officialSite);
+    }
+
+    /**
      * Test magic [__call] method.
      *
      * @return void
      */
-    public function testBookInvalidGetMethod()
+    public function testMagicInvalidGetMethod()
     {
         $this->expectException(MethodNotFoundException::class);
         $this->book->callNoneExistingGetMethod();
@@ -179,7 +239,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
      *
      * @return void
      */
-    public function testBookInvalidAttribute()
+    public function testMagicInvalidAttribute()
     {
         $this->expectException(AttributeNotFoundException::class);
         $this->book->getNonExistingAttribute();
@@ -211,8 +271,12 @@ class BookTest extends AbstractOpenGraphObjectTestCase
     <title>Mocked response</title>
     <meta property="books:author" content="http://example.com/author-1">
     <meta property="books:author" content="http://example.com/author-2">
+    <meta property="books:gender" content="male">
+    <meta property="books:book" content="http://example.com/book-1">
+    <meta property="books:book" content="http://example.com/book-2">
     <meta property="books:genre" content="http://example.com/genre-1">
     <meta property="books:genre" content="http://example.com/genre-2">
+    <meta property="books:canonical_name" content="Drama">
     <meta property="books:initial_release_date" content="2017-01-01T00:00:00+00:00">
     <meta property="books:isbn" content="1234567890000">
     <meta property="books:language:locale" content="en_GB">
@@ -221,6 +285,7 @@ class BookTest extends AbstractOpenGraphObjectTestCase
     <meta property="books:rating:scale" content="1">
     <meta property="books:release_date" content="2017-01-01T08:00:00+00:00">
     <meta property="books:sample" content="http://example.com/book-sample">
+    <meta property="books:official_site" content="http://example.com/official-site">
 </head><body></body></html>
 HTML;
     }

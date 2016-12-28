@@ -29,7 +29,7 @@ class Business extends AbstractObject
                     $this->attributes[$properties[1]] = $item->getValue();
                     break;
                 case 'hours':
-                    $currentKey = array_key_exists($properties[0], $propertyGroup) ? count($this->attributes[$properties[0]]) - 1 : null;
+                    $currentKey = array_key_exists($properties[0], $this->attributes) ? count($this->attributes[$properties[0]]) - 1 : null;
                     if ($properties[1] == 'day') {
                         $currentKey = is_null($currentKey) ? 0 : $currentKey + 1;
                     }
