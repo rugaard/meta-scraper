@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 /**
  * Class Fitness.
  *
+ * @link https://developers.facebook.com/docs/opengraph/guides/fitness
  * @package Rugaard\MetaScraper\Traits\OpenGraph\Objects
  */
 class Fitness extends AbstractObject
@@ -20,8 +21,11 @@ class Fitness extends AbstractObject
      */
     public function parse(Collection $data)
     {
+        // Fitness Metrics counter.
+        $metricsCount = null;
+
         // Loop through collection and parse each entry.
-        $data->each(function($item) {
+        $data->each(function($item) use (&$metricsCount) {
             // Until proving otherwise ...
             $insideMetrics = false;
 
@@ -41,23 +45,30 @@ class Fitness extends AbstractObject
                 case 'pace':
                 case 'speed':
                     $value = $properties[1] == 'value' ? (float) $item->getValue() : $item->getValue();
-                    $insideMetrics ? $this->attributes['metrics'][$properties[0]][$properties[1]] = $value
+                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]][$properties[1]] = $value
                                    : $this->attributes[$properties[0]][$properties[1]] = $value;
                     break;
                 case 'location':
-                    if ($insideMetrics && !array_key_exists($properties[0], $this->attributes['metrics'])) {
-                        $this->attributes['metrics'][$properties[0]] = new Place;
-                    } elseif (!$insideMetrics && !array_key_exists($properties[0], $propertyGroup)) {
+                    // Whenever we hit the property "latitude" it means
+                    // we've should bump the "metrics count" since we've
+                    // now started to parse a new ActivityDataPoint (metric).
+                    if ($insideMetrics && $properties[1] == 'latitude') {
+                        $metricsCount = !is_null($metricsCount) ? $metricsCount + 1 : 0;
+                    }
+
+                    if ($insideMetrics && (empty($this->attributes['metrics']) || !array_key_exists($properties[0], $this->attributes['metrics']))) {
+                        $this->attributes['metrics'][$metricsCount][$properties[0]] = new Place;
+                    } elseif (!$insideMetrics && !array_key_exists($properties[0], $this->attributes)) {
                         $this->attributes[$properties[0]] = new Place;
                     }
 
                     $value = $item->getValue();
-                    $insideMetrics ? $this->attributes['metrics'][$properties[0]]->{$properties[1]} = $value
+                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]]->{$properties[1]} = $value
                                    : $this->attributes[$properties[0]]->{$properties[1]} = $value;
                     break;
                 case 'timestamp':
                     $value = date_create($item->getValue());
-                    $insideMetrics ? $this->attributes['metrics'][$properties[0]] = $value
+                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]] = $value
                                    : $this->attributes[$properties[0]] = $value;
                     break;
                 case 'splits':
@@ -73,7 +84,7 @@ class Fitness extends AbstractObject
                     break;
                 default:
                     $value = is_numeric($item->getValue()) ? (int) $item->getValue() : $item->getValue();
-                    $insideMetrics ? $this->attributes['metrics'][$properties[0]] = $value
+                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]] = $value
                                    : $this->attributes[$properties[0]] = $value;
             }
         });

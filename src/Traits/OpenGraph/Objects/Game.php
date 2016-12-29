@@ -26,9 +26,6 @@ class Game extends AbstractObject
             $properties = explode(':', $item->getName());
 
             switch($properties[0]) {
-                case 'importance':
-                    $this->attributes[$properties[0]] = (float) $item->getValue();
-                    break;
                 case 'points':
                     $this->attributes[$properties[0]] = (int) $item->getValue();
                     break;

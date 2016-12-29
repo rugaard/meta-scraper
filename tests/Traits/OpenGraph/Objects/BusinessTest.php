@@ -20,7 +20,7 @@ class BusinessTest extends AbstractOpenGraphObjectTestCase
     protected $business;
 
     /**
-     * Test that object is a Book instance.
+     * Test that object is a Business instance.
      *
      * @return void
      */
