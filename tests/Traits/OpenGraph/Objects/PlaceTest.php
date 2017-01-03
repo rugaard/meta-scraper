@@ -3,7 +3,6 @@ declare (strict_types = 1);
 
 namespace Tests\Traits\OpenGraph\Objects;
 
-use DateTime;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Place;
@@ -29,29 +28,6 @@ class PlaceTest extends AbstractOpenGraphObjectTestCase
     {
         $this->assertNotEmpty($this->place);
         $this->assertInstanceOf(Place::class, $this->place);
-    }
-
-    /**
-     * Test magic [__call] method.
-     *
-     * @return void
-     */
-    public function testMagicInvalidGetMethod()
-    {
-        $this->expectException(MethodNotFoundException::class);
-        $this->place->callNoneExistingGetMethod();
-    }
-
-    /**
-     * Test exception is thrown when trying to retrieve
-     * a non-existing attribute.
-     *
-     * @return void
-     */
-    public function testMagicInvalidAttribute()
-    {
-        $this->expectException(AttributeNotFoundException::class);
-        $this->place->getNonExistingAttribute();
     }
 
     /**
@@ -91,6 +67,29 @@ class PlaceTest extends AbstractOpenGraphObjectTestCase
 
         $this->assertNotEmpty($altitude);
         $this->assertEquals('6.0', $altitude);
+    }
+
+    /**
+     * Test magic [__call] method.
+     *
+     * @return void
+     */
+    public function testMagicInvalidGetMethod()
+    {
+        $this->expectException(MethodNotFoundException::class);
+        $this->place->callNoneExistingGetMethod();
+    }
+
+    /**
+     * Test exception is thrown when trying to retrieve
+     * a non-existing attribute.
+     *
+     * @return void
+     */
+    public function testMagicInvalidAttribute()
+    {
+        $this->expectException(AttributeNotFoundException::class);
+        $this->place->getNonExistingAttribute();
     }
 
     /**

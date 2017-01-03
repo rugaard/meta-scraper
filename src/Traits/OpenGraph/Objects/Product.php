@@ -20,11 +20,8 @@ class Product extends AbstractObject
      */
     public function parse(Collection $data)
     {
-        // Key manager.
-        $keyManager = [];
-
         // Loop through collection and parse each entry.
-        $data->each(function($item) use (&$keyManager) {
+        $data->each(function($item) {
             /** @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
 
@@ -34,12 +31,7 @@ class Product extends AbstractObject
                 case 'price':
                 case 'sale_price':
                 case 'shipping_cost':
-                    $currentKey = array_key_exists($properties[0], $keyManager) ? $keyManager[$properties[0]] : null;
-                    if (is_null($currentKey) || count($this->attributes[$properties[0]][$currentKey]) == 2) {
-                        $currentKey = !is_null($currentKey) ? $currentKey + 1 : 0;
-                        $keyManager[$properties[0]] = $currentKey;
-                    }
-                    $this->attributes[$properties[0]][$currentKey][$properties[1]] = $properties[1] == 'amount' ? (float) $item->getValue() : $item->getValue();
+                    $this->attributes[$properties[0]][$properties[1]] = $properties[1] == 'amount' ? (float) $item->getValue() : $item->getValue();
                     break;
                 case 'shipping_weight':
                 case 'weight':
