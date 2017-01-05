@@ -70,13 +70,26 @@ class BusinessTest extends AbstractOpenGraphObjectTestCase
     }
 
     /**
+     * Test method [getRegion].
+     *
+     * @return void
+     */
+    public function testRegion()
+    {
+        $region = $this->business->getRegion();
+
+        $this->assertNotEmpty($region);
+        $this->assertEquals('Unknown', $region);
+    }
+
+    /**
      * Test method [getCountry].
      *
      * @return void
      */
     public function testCountry()
     {
-        $country = $this->business->getCountry();
+        $country = $this->business->getCountryName();
 
         $this->assertNotEmpty($country);
         $this->assertEquals('Great Britain', $country);
@@ -103,7 +116,7 @@ class BusinessTest extends AbstractOpenGraphObjectTestCase
      */
     public function testPhoneNumber()
     {
-        $phoneNumber = $this->business->getPhone();
+        $phoneNumber = $this->business->getPhoneNumber();
 
         $this->assertNotEmpty($phoneNumber);
         $this->assertEquals('+44 0151-263-2361', $phoneNumber);
@@ -116,7 +129,7 @@ class BusinessTest extends AbstractOpenGraphObjectTestCase
      */
     public function testFaxNumber()
     {
-        $faxNumber = $this->business->getFax();
+        $faxNumber = $this->business->getFaxNumber();
 
         $this->assertNotEmpty($faxNumber);
         $this->assertEquals('+44 0151-260-8813', $faxNumber);
@@ -209,10 +222,11 @@ class BusinessTest extends AbstractOpenGraphObjectTestCase
     <meta property="business:contact_data:street_address" content="Anfield Road">
     <meta property="business:contact_data:locality" content="Liverpool">
     <meta property="business:contact_data:postal_code" content="L4 0TH">
-    <meta property="business:contact_data:country" content="Great Britain">
+    <meta property="business:contact_data:region" content="Unknown">
+    <meta property="business:contact_data:country_name" content="Great Britain">
     <meta property="business:contact_data:email" content="anfield@liverpoolfc.tv">
-    <meta property="business:contact_data:phone" content="+44 0151-263-2361">
-    <meta property="business:contact_data:fax" content="+44 0151-260-8813">
+    <meta property="business:contact_data:phone_number" content="+44 0151-263-2361">
+    <meta property="business:contact_data:fax_number" content="+44 0151-260-8813">
     <meta property="business:contact_data:website" content="http://liverpoolfc.tv">
     <meta property="business:hours:day" content="monday">
     <meta property="business:hours:start" content="10 AM">

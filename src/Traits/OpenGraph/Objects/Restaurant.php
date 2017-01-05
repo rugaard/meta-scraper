@@ -33,6 +33,7 @@ class Restaurant extends AbstractObject
                     break;
                 case 'category':
                 case 'item':
+                case 'menu':
                 case 'section':
                     $this->attributes[$properties[0]][] = $item->getValue();
                     break;
@@ -45,7 +46,12 @@ class Restaurant extends AbstractObject
                         $currentKey = !is_null($currentKey) ? $currentKey + 1 : 0;
                         $keyManager[$properties[0]] = $currentKey;
                     }
-                    $this->attributes[$properties[0]][$currentKey][$properties[1]] = $item->getValue();
+
+                    if ($properties[1] == 'price') {
+                        $this->attributes[$properties[0]][$currentKey][$properties[1]][$properties[2]] = $item->getValue();
+                    } else {
+                        $this->attributes[$properties[0]][$currentKey][$properties[1]] = $item->getValue();
+                    }
                     break;
                 default:
                     $this->attributes[$properties[0]] = $item->getValue();
