@@ -20,7 +20,7 @@ trait Facebook
     protected $facebook = [];
 
     /**
-     * Get Open Graph details.
+     * Get Facebook details.
      *
      * @return array
      */

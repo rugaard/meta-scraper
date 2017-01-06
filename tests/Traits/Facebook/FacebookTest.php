@@ -47,8 +47,7 @@ class FacebookTest extends AbstractTestCase
     }
 
     /**
-     * Test method to parse Facebook App ID,
-     * when it isn't available in the scraped data.
+     * Test method [parseFacebookAppId] can handle an empty Collection.
      *
      * @return void
      */
@@ -79,8 +78,7 @@ class FacebookTest extends AbstractTestCase
     }
 
     /**
-     * Test method to parse Facebook App Admins,
-     * when it isn't available in the scraped data.
+     * Test method [parseFacebookAppAdmins] can handle an empty Collection.
      *
      * @return void
      */

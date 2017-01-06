@@ -80,10 +80,11 @@ class ScraperTest extends AbstractTestCase
 
         $this->assertNotEmpty($data);
         $this->assertInstanceOf(Collection::class, $data);
-        $this->assertCount(2, $data);
+        $this->assertCount(3, $data);
 
         $this->assertArrayHasKey('facebook', $data);
         $this->assertArrayHasKey('opengraph', $data);
+        $this->assertArrayHasKey('twitter', $data);
     }
 
     /**

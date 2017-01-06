@@ -12,6 +12,7 @@ use Rugaard\MetaScraper\Exceptions\InvalidUrlException;
 use Rugaard\MetaScraper\Exceptions\RequestFailedException;
 use Rugaard\MetaScraper\Traits\Facebook\Facebook;
 use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
+use Rugaard\MetaScraper\Traits\Twitter\Twitter;
 
 /**
  * Class Scraper.
@@ -20,7 +21,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
  */
 class Scraper
 {
-    use Facebook, OpenGraph;
+    use Facebook, OpenGraph, Twitter;
 
     /**
      * Guzzle instance.

@@ -120,6 +120,11 @@ abstract class AbstractTestCase extends TestCase
     <meta property="place:location:longitude" content="12.568337">
     <meta property="fb:app_id" content="1234567890">
     <meta property="fb:admins" content="12345678,87654321,13579,86420">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="This is a Twitter title">
+    <meta property="twitter:description" content="This is a Twitter description">
+    <meta property="twitter:site" content="@twitter">
+    <meta property="twitter:creator" content="@DuGi">
 </head><body></body></html>
 HTML;
     }
