@@ -66,6 +66,27 @@ class ScraperTest extends AbstractTestCase
     }
 
     /**
+     * Test method [all].
+     *
+     * @return void
+     */
+    public function testGetAllParsedData()
+    {
+        $this->scraper->setClient($this->createMockedGuzzleClient([
+            new GuzzleResponse(200, [], $this->getMockedResponse())
+        ]))->load('http://127.0.0.1');
+
+        $data = $this->scraper->all();
+
+        $this->assertNotEmpty($data);
+        $this->assertInstanceOf(Collection::class, $data);
+        $this->assertCount(2, $data);
+
+        $this->assertArrayHasKey('facebook', $data);
+        $this->assertArrayHasKey('opengraph', $data);
+    }
+
+    /**
      * Test method [extractByTag].
      *
      * @return void

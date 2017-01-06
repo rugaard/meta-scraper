@@ -4,6 +4,7 @@ declare (strict_types = 1);
 namespace Tests\Traits\Facebook;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Traits\Facebook\Facebook;
 use Tests\AbstractTestCase;
 
@@ -46,6 +47,21 @@ class FacebookTest extends AbstractTestCase
     }
 
     /**
+     * Test method to parse Facebook App ID,
+     * when it isn't available in the scraped data.
+     *
+     * @return void
+     */
+    public function testFacebookAppIdIsEmpty()
+    {
+        $this->invokeMethod($this->trait, 'parseFacebookAppId', [new Collection]);
+
+        $data = $this->trait->getFacebook();
+
+        $this->assertArrayNotHasKey('app_id', $data);
+    }
+
+    /**
      * Test method to parse Facebook App Admins.
      *
      * @return void
@@ -60,6 +76,21 @@ class FacebookTest extends AbstractTestCase
         $this->assertEquals('87654321', $data['admins'][1]);
         $this->assertEquals('13579', $data['admins'][2]);
         $this->assertEquals('86420', $data['admins'][3]);
+    }
+
+    /**
+     * Test method to parse Facebook App Admins,
+     * when it isn't available in the scraped data.
+     *
+     * @return void
+     */
+    public function testFacebookAppAdminsIsEmpty()
+    {
+        $this->invokeMethod($this->trait, 'parseFacebookAppAdmins', [new Collection]);
+
+        $data = $this->trait->getFacebook();
+
+        $this->assertArrayNotHasKey('admins', $data);
     }
 
     /**
@@ -90,21 +121,5 @@ class FacebookTest extends AbstractTestCase
     {
         parent::tearDown();
         unset($this->trait);
-    }
-
-    /**
-     * Get a mocked response containing valid <meta> tags.
-     *
-     * @return string
-     */
-    protected function getMockedResponse() : string
-    {
-        return <<<HTML
-<html><head>
-    <title>Mocked response</title>
-    <meta property="fb:app_id" content="1234567890">
-    <meta property="fb:admins" content="12345678,87654321,13579,86420">
-</head><body></body></html>
-HTML;
     }
 }
