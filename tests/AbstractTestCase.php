@@ -74,6 +74,8 @@ abstract class AbstractTestCase extends TestCase
         ]);
     }
 
+
+
     /**
      * Get a mocked response containing valid <meta> tags.
      *
@@ -116,6 +118,8 @@ abstract class AbstractTestCase extends TestCase
     <meta property="og:audio" content="http://example.com/alternative.mp3">
     <meta property="place:location:latitude"  content="55.676098"> 
     <meta property="place:location:longitude" content="12.568337">
+    <meta property="fb:app_id" content="1234567890">
+    <meta property="fb:admins" content="12345678,87654321,13579,86420">
 </head><body></body></html>
 HTML;
     }

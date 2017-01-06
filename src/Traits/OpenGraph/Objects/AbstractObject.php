@@ -14,6 +14,11 @@ use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
  */
 abstract class AbstractObject
 {
+    /**
+     * Array of attributes
+     *
+     * @var array
+     */
     protected $attributes = [];
 
     /**
@@ -54,7 +59,7 @@ abstract class AbstractObject
         }
 
         // Convert name into a snake_case attribute.
-        $attribute = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/',"_$1", substr($name, 3)));
+        $attribute = snake_case($name);
 
         // Make sure attribute exists.
         if (!array_key_exists($attribute, $this->attributes)) {

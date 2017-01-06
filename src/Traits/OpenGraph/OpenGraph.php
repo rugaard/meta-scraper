@@ -63,7 +63,7 @@ trait OpenGraph
     private function parseOpenGraphStandard(Collection $tags)
     {
         foreach ($this->getOpenGraphStandardProperties() as $property) {
-            // Loop through our collection of tags  and carefully
+            // Loop through our collection of tags and carefully
             // select only those that matches our current property.
             $matches = $tags->filter(function ($tag) use ($property) {
                 // We split on ":" so potential structural properties
@@ -120,7 +120,7 @@ trait OpenGraph
     private function parseOpenGraphMedia(Collection $tags)
     {
         foreach ($this->getOpenGraphMediaTypes() as $mediaType => $mediaTypeClass) {
-            // Loop through our collection of tags  and carefully
+            // Loop through our collection of tags and carefully
             // select only those that matches our current property.
             $matches = $tags->filter(function ($tag) use ($mediaType) {
                 // We split on ":" so potential structural properties

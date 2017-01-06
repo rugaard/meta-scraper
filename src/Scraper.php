@@ -7,10 +7,10 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Illuminate\Support\Collection;
-use Psr\Http\Message\ResponseInterface as PsrMessageResponseInterface;
 use Rugaard\MetaScraper\Exceptions\NoItemsException;
 use Rugaard\MetaScraper\Exceptions\InvalidUrlException;
 use Rugaard\MetaScraper\Exceptions\RequestFailedException;
+use Rugaard\MetaScraper\Traits\Facebook\Facebook;
 use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
 
 /**
@@ -20,7 +20,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
  */
 class Scraper
 {
-    use OpenGraph;
+    use Facebook, OpenGraph;
 
     /**
      * Guzzle instance.
@@ -85,6 +85,23 @@ class Scraper
         }
 
         return $this;
+    }
+
+    /**
+     * Get all parsed meta data.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function all() : Collection
+    {
+        $data = new Collection;
+
+        foreach (class_uses($this) as $trait) {
+            $traitName = class_basename($trait);
+            $data->put(strtolower($traitName), call_user_func([$this, camel_case($traitName)]));
+        }
+
+        return $data;
     }
 
     /**
@@ -202,108 +219,4 @@ class Scraper
     {
         return $this->metaTags;
     }
-
-    /**
-     * getDebugContentBody.
-     *
-     * @return string
-     *
-    public function getDebugContentBody() : string
-    {
-        return '
-<html>
-<head>
-    <title>Open Graph testing</title>
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="This is the Open Graph title">
-    <meta property="og:description" content="What a beautiful Open Graph description">
-    <meta property="og:url" content="http://shortlinks.dev/admin/links/scrape">
-    <meta property="og:site_name" content="Shortlinks!">
-    <meta property="og:ttl" content="345600">
-    <meta property="og:rich_attachment" content="true">
-    <meta property="og:see_also" content="http://shortlinks.dev/admin">
-    <meta property="og:updated_time" content="2016-12-06">
-    <meta property="og:determiner" content="auto">
-    <!-- Locales -->
-    <meta property="og:locale" content="da_DK">
-    <meta property="og:locale:alternate" content="en_GB">
-    <meta property="og:locale:alternate" content="en_US">
-    <!-- Restrictions -->
-    <meta property="og:restrictions:age" content="18+">
-    <meta property="og:restrictions:country:allowed" content="dk">
-    <meta property="og:restrictions:country:allowed" content="sv">
-    <meta property="og:restrictions:country:allowed" content="no">
-    <meta property="og:restrictions:country:disallowed" content="us">
-    <meta property="og:restrictions:country:disallowed" content="gb">
-    <meta property="og:restrictions:content" content="alcohol">
-    <!-- Images -->
-    <meta property="og:image" content="http://example.com/opengraph-image1.jpg">
-    <meta property="og:image:secure_url" content="https://example.com/opengraph-image1.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="500">
-    <meta property="og:image:height" content="225">
-    <meta property="og:image" content="http://example.com/opengraph-image2.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:secure_url" content="https://example.com/opengraph-image2.jpg">
-    <meta property="og:image:url" content="http://example.com/opengraph-image3.jpg">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="600">
-    <meta property="og:image" content="http://example.com/opengraph-image4.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:url" content="http://example.com/opengraph-image5.jpg">
-    <meta property="og:image:secure_url" content="https://example.com/opengraph-image5.jpg">
-    <meta property="og:image:height" content="600">
-    <!-- Videos -->
-    <meta property="og:video" content="http://example.com/movie.swf">
-    <meta property="og:video:secure_url" content="https://secure.example.com/movie.swf">
-    <meta property="og:video:type" content="application/x-shockwave-flash">
-    <meta property="og:video:width" content="400">
-    <meta property="og:video:height" content="300">
-    <meta property="og:video" content="http://example.com/movie.swf">
-    <meta property="og:video:secure_url" content="https://secure.example.com/movie.swf">
-    <meta property="og:video:type" content="application/x-shockwave-flash">
-    <meta property="og:video:url" content="http://example.com/movie.swf">
-    <meta property="og:video:width" content="400">
-    <meta property="og:video:height" content="300">
-    <meta property="og:video" content="http://example.com/movie.swf">
-    <meta property="og:video:type" content="application/x-shockwave-flash">
-    <meta property="og:video:width" content="400">
-    <meta property="og:video:url" content="http://example.com/movie.swf">
-    <meta property="og:video:secure_url" content="https://secure.example.com/movie.swf">
-    <meta property="og:video:height" content="300">
-    <!-- Audio -->
-    <meta property="og:audio" content="http://example.com/sound.mp3">
-    <meta property="og:audio:secure_url" content="https://secure.example.com/sound.mp3">
-    <meta property="og:audio:type" content="audio/mpeg">
-    <meta property="og:audio" content="http://example.com/sound.mp3">
-    <meta property="og:audio:url" content="http://example.com/sound.mp3">
-    <meta property="og:audio:type" content="audio/mpeg">
-    <meta property="og:audio" content="http://example.com/sound.mp3">
-    <meta property="og:audio:secure_url" content="https://secure.example.com/sound.mp3">
-    <!-- Objects -->
-    <meta property="video:actor:id" content="http://example.com/actor/1">
-    <meta property="video:actor:role" content="The Good Guy">
-    <meta property="video:actor:id" content="http://example.com/actor/2">
-    <meta property="video:actor:role" content="The Bad Guy">
-    <meta property="video:director" content="http://example.com/director/1">
-    <meta property="video:director" content="http://example.com/director/2">
-    <meta property="video:director" content="http://example.com/director/3">
-    <meta property="video:duration" content="123081">
-    <meta property="video:release_date" content="2016-12-17T13:05:24">
-    <meta property="video:series" content="http://example.com/series">
-    <meta property="video:tag" content="funny">
-    <meta property="video:tag" content="sports">
-    <meta property="video:tag" content="blockbuster">
-    <meta property="video:writer" content="http://example.com/writer/1">
-    <meta property="video:writer" content="http://example.com/writer/2">
-</head>
-<body>
-    <img src="http://example.com/image1.jpg" alt="Image 1">
-    <img src="http://example.com/image2.jpg" alt="Image 2">
-    <img src="http://example.com/image3.jpg" alt="Image 3">
-</body>
-</html>';
-    }
-    */
 }

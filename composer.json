@@ -30,7 +30,10 @@
   "autoload": {
     "psr-4": {
       "Rugaard\\MetaScraper\\": "src/"
-    }
+    },
+    "files": [
+      "src/Support/Helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
