@@ -10,7 +10,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Place;
 /**
  * Class PlaceTest.
  */
-class PlaceTest extends AbstractOpenGraphObjectTestCase
+class PlaceTest extends AbstractObjectTestCase
 {
     /**
      * Place instance

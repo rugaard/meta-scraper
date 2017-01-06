@@ -11,7 +11,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Product;
 /**
  * Class ProductTest.
  */
-class ProductTest extends AbstractOpenGraphObjectTestCase
+class ProductTest extends AbstractObjectTestCase
 {
     /**
      * Product instance

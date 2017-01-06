@@ -11,7 +11,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Music;
 /**
  * Class MusicTest.
  */
-class MusicTest extends AbstractOpenGraphObjectTestCase
+class MusicTest extends AbstractObjectTestCase
 {
     /**
      * Music instance

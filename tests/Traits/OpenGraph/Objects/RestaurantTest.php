@@ -10,7 +10,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Restaurant;
 /**
  * Class RestaurantTest.
  */
-class RestaurantTest extends AbstractOpenGraphObjectTestCase
+class RestaurantTest extends AbstractObjectTestCase
 {
     /**
      * Restaurant instance

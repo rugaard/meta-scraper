@@ -68,7 +68,7 @@ trait OpenGraph
             $matches = $tags->filter(function ($tag) use ($property) {
                 // We split on ":" so potential structural properties
                 // will also be included in our matches.
-                /** @var \Rugaard\MetaScraper\Meta $tag */
+                /* @var \Rugaard\MetaScraper\Meta $tag */
                 return explode(':', $tag->getName())[0] == $property;
             });
 
@@ -82,14 +82,14 @@ trait OpenGraph
                 // Locale property.
                 case 'locale':
                     $matches->each(function ($item) use ($property) {
-                        /** @var \Rugaard\MetaScraper\Meta $item */
+                        /* @var \Rugaard\MetaScraper\Meta $item */
                         $this->openGraph[$property][] = $item->getValue();
                     });
                     break;
                 // Restrictions property.
                 case 'restrictions':
                     $matches->each(function ($item) use ($property) {
-                        /** @var \Rugaard\MetaScraper\Meta $item */
+                        /* @var \Rugaard\MetaScraper\Meta $item */
                         $itemProperties = array_slice(explode(':', $item->getName()), 1);
                         if (count($itemProperties) > 1) {
                             $this->openGraph[$property][sprintf('%s_%s', $itemProperties[0], $itemProperties[1])][] = $item->getValue();
@@ -125,7 +125,7 @@ trait OpenGraph
             $matches = $tags->filter(function ($tag) use ($mediaType) {
                 // We split on ":" so potential structural properties
                 // will also be included in our matches.
-                /** @var \Rugaard\MetaScraper\Meta $tag */
+                /* @var \Rugaard\MetaScraper\Meta $tag */
                 return explode(':', $tag->getName())[0] == $mediaType;
             });
 
@@ -143,7 +143,7 @@ trait OpenGraph
             $iteration = null;
 
             $matches->each(function ($item) use ($mediaTypeClass, &$propertyGroup, &$iteration) {
-                /** @var \Rugaard\MetaScraper\Meta $item */
+                /* @var \Rugaard\MetaScraper\Meta $item */
                 $properties = explode(':', $item->getName());
 
                 if (count($properties) > 1 && $properties[1] == 'url' || count($properties) == 1) {

@@ -10,7 +10,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Profile;
 /**
  * Class ProfileTest.
  */
-class ProfileTest extends AbstractOpenGraphObjectTestCase
+class ProfileTest extends AbstractObjectTestCase
 {
     /**
      * Profile instance

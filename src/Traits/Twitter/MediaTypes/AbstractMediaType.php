@@ -1,15 +1,14 @@
 <?php
 declare (strict_types = 1);
 
-namespace Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes;
+namespace Rugaard\MetaScraper\Traits\Twitter\MediaTypes;
 
-use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 
 /**
  * Class AbstractMediaType.
  *
- * @package Rugaard\MetaScraper\Traits\OpenGraph\Objects
+ * @package Rugaard\MetaScraper\Traits\Twitter\Objects
  */
 abstract class AbstractMediaType
 {
@@ -21,24 +20,10 @@ abstract class AbstractMediaType
     protected $url;
 
     /**
-     * Secure URL of media type
-     *
-     * @var string
-     */
-    protected $secureUrl;
-
-    /**
-     * Mime-type of media type
-     *
-     * @var string
-     */
-    protected $mimeType;
-
-    /**
      * Set URL of media type
      *
      * @param  string $url
-     * @return \Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes\AbstractMediaType
+     * @return \Rugaard\MetaScraper\Traits\Twitter\MediaTypes\AbstractMediaType
      */
     public function setUrl(string $url) : AbstractMediaType
     {
@@ -57,54 +42,10 @@ abstract class AbstractMediaType
     }
 
     /**
-     * Set secure URL of media type
-     *
-     * @param  string $url
-     * @return \Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes\AbstractMediaType
-     */
-    public function setSecureUrl(string $url) : AbstractMediaType
-    {
-        $this->secureUrl = $url;
-        return $this;
-    }
-
-    /**
-     * Get secure URL of media type
-     *
-     * @return string
-     */
-    public function getSecureUrl() : string
-    {
-        return (string) $this->secureUrl;
-    }
-
-    /**
-     * Set mime-type of media type
-     *
-     * @param  string $mimeType
-     * @return \Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes\AbstractMediaType
-     */
-    public function setMimeType(string $mimeType) : AbstractMediaType
-    {
-        $this->mimeType = $mimeType;
-        return $this;
-    }
-
-    /**
-     * Get mime-type of media type
-     *
-     * @return string
-     */
-    public function getMimeType() : string
-    {
-        return (string) $this->mimeType;
-    }
-
-    /**
      * __get.
      *
      * @param  string $name
-     * @return \Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes\AbstractMediaType
+     * @return \Rugaard\MetaScraper\Traits\Twitter\MediaTypes\AbstractMediaType
      * @throws \Rugaard\MetaScraper\Exceptions\MethodNotFoundException
      */
     public function __get(string $name) : AbstractMediaType
@@ -121,7 +62,7 @@ abstract class AbstractMediaType
      *
      * @param  string $name
      * @param  mixed $value
-     * @return \Rugaard\MetaScraper\Traits\OpenGraph\MediaTypes\AbstractMediaType
+     * @return \Rugaard\MetaScraper\Traits\Twitter\MediaTypes\AbstractMediaType
      * @throws \Rugaard\MetaScraper\Exceptions\MethodNotFoundException
      */
     public function __set(string $name, $value) : AbstractMediaType

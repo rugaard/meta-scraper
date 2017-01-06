@@ -29,7 +29,7 @@ class Fitness extends AbstractObject
             // Until proving otherwise ...
             $insideMetrics = false;
 
-            /** @var \Rugaard\MetaScraper\Meta $item */
+            /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
 
             // Check if we're inside a metric item

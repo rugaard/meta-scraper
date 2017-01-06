@@ -22,7 +22,7 @@ class Book extends AbstractObject
     {
         // Loop through collection and parse each entry.
         $data->each(function($item) {
-            /** @var \Rugaard\MetaScraper\Meta $item */
+            /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
             switch($properties[0]) {
                 case 'author':

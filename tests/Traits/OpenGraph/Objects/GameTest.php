@@ -11,7 +11,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Game;
 /**
  * Class GameTest.
  */
-class GameTest extends AbstractOpenGraphObjectTestCase
+class GameTest extends AbstractObjectTestCase
 {
     /**
      * Game instance

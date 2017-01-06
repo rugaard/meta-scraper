@@ -51,7 +51,7 @@ trait Facebook
         $facebookAppIdTag = $tags->filter(function ($tag) {
             // We split on ":" so potential structural properties
             // will also be included in our matches.
-            /** @var \Rugaard\MetaScraper\Meta $tag */
+            /* @var \Rugaard\MetaScraper\Meta $tag */
             return explode(':', $tag->getName())[0] == 'app_id';
         })->first();
 
@@ -78,7 +78,7 @@ trait Facebook
         $facebookAppAdminsTag = $tags->filter(function ($tag) {
             // We split on ":" so potential structural properties
             // will also be included in our matches.
-            /** @var \Rugaard\MetaScraper\Meta $tag */
+            /* @var \Rugaard\MetaScraper\Meta $tag */
             return explode(':', $tag->getName())[0] == 'admins';
         })->first();
 

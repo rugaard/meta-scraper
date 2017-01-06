@@ -11,7 +11,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Video;
 /**
  * Class VideoTest.
  */
-class VideoTest extends AbstractOpenGraphObjectTestCase
+class VideoTest extends AbstractObjectTestCase
 {
     /**
      * Video instance

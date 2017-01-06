@@ -12,7 +12,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Place;
 /**
  * Class FitnessTest.
  */
-class FitnessTest extends AbstractOpenGraphObjectTestCase
+class FitnessTest extends AbstractObjectTestCase
 {
     /**
      * Fitness instance

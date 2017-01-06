@@ -11,7 +11,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Book;
 /**
  * Class BookTest.
  */
-class BookTest extends AbstractOpenGraphObjectTestCase
+class BookTest extends AbstractObjectTestCase
 {
     /**
      * Book instance

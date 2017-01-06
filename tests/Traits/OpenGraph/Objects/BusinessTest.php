@@ -10,7 +10,7 @@ use Rugaard\MetaScraper\Traits\OpenGraph\Objects\Business;
 /**
  * Class BusinessTest.
  */
-class BusinessTest extends AbstractOpenGraphObjectTestCase
+class BusinessTest extends AbstractObjectTestCase
 {
     /**
      * Business instance

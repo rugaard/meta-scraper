@@ -8,9 +8,9 @@ use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
 use Tests\AbstractTestCase;
 
 /**
- * Class AbstractOpenGraphObjectTestCase.
+ * Class AbstractObjectTestCase.
  */
-abstract class AbstractOpenGraphObjectTestCase extends AbstractTestCase
+abstract class AbstractObjectTestCase extends AbstractTestCase
 {
     /**
      * Mocked trait object.
