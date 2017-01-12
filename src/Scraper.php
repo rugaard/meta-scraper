@@ -10,9 +10,9 @@ use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Exceptions\NoItemsException;
 use Rugaard\MetaScraper\Exceptions\InvalidUrlException;
 use Rugaard\MetaScraper\Exceptions\RequestFailedException;
-use Rugaard\MetaScraper\Traits\Facebook\Facebook;
-use Rugaard\MetaScraper\Traits\OpenGraph\OpenGraph;
-use Rugaard\MetaScraper\Traits\Twitter\Twitter;
+use Rugaard\MetaScraper\Namespaces\Facebook\Facebook;
+use Rugaard\MetaScraper\Namespaces\OpenGraph\OpenGraph;
+use Rugaard\MetaScraper\Namespaces\Twitter\Twitter;
 
 /**
  * Class Scraper.
@@ -155,14 +155,14 @@ class Scraper
      */
     protected function extractAttributesFromTag(string $string) : array
     {
+        // Container.
+        $attributes = [];
+
         // Get all attributes for tag.
         preg_match_all('#([a-zA-Z0-9-]+)=["]{1}([^"]*)#', $string, $results, PREG_SET_ORDER);
         if (!$results) {
-            throw new NoItemsException('No attributes found', 204);
+            return $attributes;
         }
-
-        // Container.
-        $attributes = [];
 
         // Loop through each found attribute
         // and extract it's value.

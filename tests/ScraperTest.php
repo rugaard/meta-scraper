@@ -141,8 +141,8 @@ class ScraperTest extends AbstractTestCase
      */
     public function testExceptionNoItemsFoundInExtractAttributesFromTag()
     {
-        $this->expectException(NoItemsException::class);
-        $this->invokeMethod($this->scraper, 'extractAttributesFromTag', ['']);
+        $attributes = $this->invokeMethod($this->scraper, 'extractAttributesFromTag', ['']);
+        $this->assertEmpty($attributes);
     }
 
     /**
