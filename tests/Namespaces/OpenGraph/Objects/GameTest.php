@@ -3,15 +3,15 @@ declare (strict_types = 1);
 
 namespace Tests\Namespaces\OpenGraph\Objects;
 
-use DateTime;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Game;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class GameTest.
  */
-class GameTest extends AbstractObjectTestCase
+class GameTest extends AbstractOpenGraphTestCase
 {
     /**
      * Game instance
@@ -90,6 +90,8 @@ class GameTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

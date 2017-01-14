@@ -4,13 +4,14 @@ declare (strict_types = 1);
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
 use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
 
 /**
  * Class Restaurant.
  *
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Restaurant extends AbstractObject
+class Restaurant extends Item
 {
     /**
      * Parse restaurant object.

@@ -7,11 +7,12 @@ use DateTime;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Product;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class ProductTest.
  */
-class ProductTest extends AbstractObjectTestCase
+class ProductTest extends AbstractOpenGraphTestCase
 {
     /**
      * Product instance
@@ -489,6 +490,8 @@ class ProductTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

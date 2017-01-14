@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 /**
  * Trait Facebook.
  *
+ * @trait
  * @package Rugaard\MetaScraper\Namespaces\Facebook
  */
 trait Facebook

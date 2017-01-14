@@ -3,68 +3,38 @@ declare (strict_types = 1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\MediaTypes;
 
+use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
+
 /**
  * Class Image.
  *
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Image extends AbstractMediaType
+class Image extends Item
 {
     /**
-     * Width of image
+     * Parse image data.
      *
-     * @var int
+     * @param  \Illuminate\Support\Collection $data
+     * @return void
      */
-    protected $width;
-
-    /**
-     * Height of image
-     *
-     * @var int
-     */
-    protected $height;
-
-    /**
-     * Set width of image
-     *
-     * @param  string $width
-     * @return \Rugaard\MetaScraper\Namespaces\OpenGraph\MediaTypes\Image
-     */
-    public function setWidth(string $width) : Image
+    public function parse(Collection $data)
     {
-        $this->width = (int) $width;
-        return $this;
-    }
+        $data->each(function($item) {
+            /* @var \Rugaard\MetaScraper\Meta $item */
+            $properties = explode(':', $item->getName());
 
-    /**
-     * Get width of image
-     *
-     * @return int
-     */
-    public function getWidth() : int
-    {
-        return (int) $this->width;
-    }
+            // Support "hidden" URL property
+            $property = count($properties) > 1 ? $properties[1] : 'url';
 
-    /**
-     * Set height of image
-     *
-     * @param  string $height
-     * @return \Rugaard\MetaScraper\Namespaces\OpenGraph\MediaTypes\Image
-     */
-    public function setHeight(string $height) : Image
-    {
-        $this->height = (int) $height;
-        return $this;
-    }
-
-    /**
-     * Get height of image
-     *
-     * @return int
-     */
-    public function getHeight() : int
-    {
-        return (int) $this->height;
+            switch ($property) {
+                case 'type':
+                    $this->attributes['mime_type'] = $item->getValue();
+                    break;
+                default:
+                    $this->attributes[$property] = $item->getValue();
+            }
+        });
     }
 }

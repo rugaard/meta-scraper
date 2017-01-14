@@ -7,11 +7,12 @@ use DateTime;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Music;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class MusicTest.
  */
-class MusicTest extends AbstractObjectTestCase
+class MusicTest extends AbstractOpenGraphTestCase
 {
     /**
      * Music instance
@@ -247,6 +248,8 @@ class MusicTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

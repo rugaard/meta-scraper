@@ -21,6 +21,7 @@ use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Video as ObjectVideo;
 /**
  * Trait OpenGraph.
  *
+ * @trait
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph
  */
 trait OpenGraph
@@ -135,37 +136,27 @@ trait OpenGraph
                 continue;
             }
 
-            // Container.
-            $propertyGroup = [];
+            // Container used to group images
+            $images = [];
 
-            // Determine which item iteration
-            // we're currently trying to parse.
-            $iteration = null;
+            // Iteration counter
+            $iteration = 0;
 
-            $matches->each(function ($item) use ($mediaTypeClass, &$propertyGroup, &$iteration) {
+            $matches->each(function($item) use (&$images, &$iteration) {
                 /* @var \Rugaard\MetaScraper\Meta $item */
                 $properties = explode(':', $item->getName());
 
-                if (count($properties) > 1 && $properties[1] == 'url' || count($properties) == 1) {
-                    $iteration = is_null($iteration) ? 0 : $iteration + 1;
-                    $propertyGroup[$iteration] = new $mediaTypeClass;
+                if (is_null($iteration) || count($properties) == 1 || $properties[1] == 'url') {
+                    $iteration = !is_null($iteration) ? $iteration + 1 : 0;
                 }
 
-                $property = count($properties) > 1 ? $properties[1] : 'url';
-                switch ($property) {
-                    case 'secure_url':
-                        $propertyGroup[$iteration]->setSecureUrl($item->getValue());
-                        break;
-                    case 'type':
-                        $propertyGroup[$iteration]->setMimeType($item->getValue());
-                        break;
-                    default:
-                        $propertyGroup[$iteration]->{$property} = $item->getValue();
-                }
+                $images[$iteration][] = $item;
             });
 
-            // Add property group to container.
-            $this->openGraph[$mediaType] = $propertyGroup;
+            collect($images)->each(function($image) use ($mediaType, $mediaTypeClass) {
+                $this->openGraph[$mediaType][] = new $mediaTypeClass(new Collection($image));
+            });
+
         }
     }
 

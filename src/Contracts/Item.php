@@ -1,45 +1,45 @@
 <?php
 declare (strict_types = 1);
 
-namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
+namespace Rugaard\MetaScraper\Contracts;
 
 use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 
 /**
- * Class AbstractObject.
+ * Class Item.
  *
- * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
+ * @abstract
+ * @package Rugaard\MetaScraper\Contracts\Item
  */
-abstract class AbstractObject
+abstract class Item
 {
     /**
-     * Array of attributes
+     * Array of attributes.
      *
      * @var array
      */
     protected $attributes = [];
 
     /**
-     * AbstractObject constructor.
+     * Item constructor.
      *
      * @param \Illuminate\Support\Collection $data
      */
     public function __construct(Collection $data = null)
     {
-        if (!is_null($data) && !$data->isEmpty()) {
-            $this->parse($data);
-        }
+        $data = $data ?: new Collection;
+        $this->parse($data);
     }
 
     /**
-     * Parse object type.
+     * Parse item data.
      *
      * @param  \Illuminate\Support\Collection $data
      * @return void
      */
-    abstract public function parse(Collection $data);
+    abstract protected function parse(Collection $data);
 
     /**
      * __call.

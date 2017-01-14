@@ -1,16 +1,16 @@
 <?php
 declare (strict_types = 1);
 
-namespace Tests\Namespaces\OpenGraph\Objects;
+namespace Tests\Namespaces\Twitter;
 
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
-use Rugaard\MetaScraper\Namespaces\OpenGraph\OpenGraph;
+use Rugaard\MetaScraper\Namespaces\Twitter\Twitter;
 use Tests\AbstractTestCase;
 
 /**
- * Class AbstractObjectTestCase.
+ * Class AbstractTwitterTestCase.
  */
-abstract class AbstractObjectTestCase extends AbstractTestCase
+abstract class AbstractTwitterTestCase extends AbstractTestCase
 {
     /**
      * Mocked trait object.
@@ -32,11 +32,20 @@ abstract class AbstractObjectTestCase extends AbstractTestCase
             new GuzzleResponse(200, [], $this->getMockedResponse())
         ]))->load('http://127.0.0.1');
 
-        $this->trait = $this->createPartialMock(get_class($this->getMockForTrait(OpenGraph::class)), ['getAllByNamespace']);
+        $this->trait = $this->createPartialMock(get_class($this->getMockForTrait(Twitter::class)), ['getAllByNamespace']);
         $this->trait->method('getAllByNamespace')->will($this->returnCallback(function ($namespace) {
             return $this->invokeMethod($this->scraper, 'getAllByNamespace', [$namespace]);
         }));
+    }
 
-        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
+    /**
+     * Reset test case.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->trait);
     }
 }

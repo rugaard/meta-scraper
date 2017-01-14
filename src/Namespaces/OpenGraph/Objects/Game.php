@@ -4,13 +4,14 @@ declare (strict_types = 1);
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
 use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
 
 /**
  * Class Game.
  *
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Game extends AbstractObject
+class Game extends Item
 {
     /**
      * Parse game object.

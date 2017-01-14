@@ -4,6 +4,8 @@ declare (strict_types = 1);
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
 use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
+use Rugaard\MetaScraper\Meta;
 
 /**
  * Class Fitness.
@@ -11,7 +13,7 @@ use Illuminate\Support\Collection;
  * @link https://developers.facebook.com/docs/opengraph/guides/fitness
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Fitness extends AbstractObject
+class Fitness extends Item
 {
     /**
      * Parse fitness object.
@@ -62,9 +64,16 @@ class Fitness extends AbstractObject
                         $this->attributes[$properties[0]] = new Place;
                     }
 
-                    $value = $item->getValue();
-                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]]->{$properties[1]} = $value
-                                   : $this->attributes[$properties[0]]->{$properties[1]} = $value;
+                    // Since we have a nested Place object, with information scattered
+                    // since another object, we had to start of by creating an empty Place object.
+                    // To inject data into the Place object, we need to "fake" that it's being inserted
+                    // like it would be, as if it was it's own object instead of being nested.
+                    $disguiseDataAsCollection = new Collection([
+                        new Meta(['name' => $item->getNameWithNamespace(), 'content' => $item->getValue()])
+                    ]);
+
+                    $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]]->parse($disguiseDataAsCollection)
+                                   : $this->attributes[$properties[0]]->parse($disguiseDataAsCollection);
                     break;
                 case 'timestamp':
                     $value = date_create($item->getValue());

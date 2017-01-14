@@ -11,6 +11,7 @@ use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player;
 /**
  * Trait Twitter.
  *
+ * @trait
  * @package Rugaard\MetaScraper\Namespaces\Twitter
  */
 trait Twitter
@@ -93,52 +94,7 @@ trait Twitter
                 continue;
             }
 
-            // Determine which item iteration
-            // we're currently trying to parse.
-            $iteration = null;
-
-            $matches->each(function ($item) use ($mediaTypeClass, &$iteration) {
-                /* @var \Rugaard\MetaScraper\Meta $item */
-                $properties = explode(':', $item->getName());
-
-                // Add media type to Twitter container
-                if (!array_key_exists($properties[0], $this->twitter)) {
-                    $this->twitter[$properties[0]] = new $mediaTypeClass;
-                }
-
-                // I don't know what the guys at Twitter has been smoking,
-                // but not grouping id, name and URL by device is just idiotic.
-                //
-                // For that reason, we need to make a special "app" switch case,
-                // to keep the consistency throughout the package.
-                if ($properties[0] == 'app') {
-                    switch ($properties[1]) {
-                        case 'id':
-                        case 'name':
-                        case 'url':
-                            $this->twitter[$properties[0]]->{'set' . camel_case($properties[2])}($properties[1], $item->getValue());
-                            break;
-                        default:
-                            $this->twitter[$properties[0]]->{$properties[1]} = $item->getValue();
-                    }
-                } else {
-                    $property = count($properties) > 1 ? $properties[1] : 'url';
-                    switch ($property) {
-                        case 'alt':
-                            $this->twitter[$properties[0]]->setDescription($item->getValue());
-                            break;
-                        case 'stream':
-                            if (count($properties) > 2 && $properties[2] == 'content_type') {
-                                $this->twitter[$properties[0]]->setVideoType($item->getValue());
-                            } else {
-                                $this->twitter[$properties[0]]->setVideoUrl($item->getValue());
-                            }
-                            break;
-                        default:
-                            $this->twitter[$properties[0]]->{$property} = $item->getValue();
-                    }
-                }
-            });
+            $this->twitter[$mediaType] = new $mediaTypeClass($matches);
         }
     }
 

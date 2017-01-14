@@ -4,13 +4,14 @@ declare (strict_types = 1);
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
 use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
 
 /**
  * Class Business.
  *
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Business extends AbstractObject
+class Business extends Item
 {
     /**
      * Parse business object.

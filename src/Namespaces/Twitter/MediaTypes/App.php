@@ -3,129 +3,39 @@ declare (strict_types = 1);
 
 namespace Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes;
 
+use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
+
 /**
  * Class App.
  *
  * @package Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes
  */
-class App extends AbstractMediaType
+class App extends Item
 {
     /**
-     * iPhone details.
+     * Parse image data.
      *
-     * @var array
+     * @param  \Illuminate\Support\Collection $data
+     * @return void
      */
-    protected $iPhone;
-
-    /**
-     * iPad details.
-     *
-     * @var array
-     */
-    protected $iPad;
-
-    /**
-     * Google Play details.
-     *
-     * @var array
-     */
-    protected $googlePlay;
-
-    /**
-     * App Country.
-     *
-     * @var string
-     */
-    protected $country;
-
-    /**
-     * Set iPhone details.
-     *
-     * @param  string $field
-     * @param  string $value
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App
-     */
-    public function setIPhone($field, $value) : App
+    protected function parse(Collection $data)
     {
-        $this->iPhone[$field] = $value;
-        return $this;
-    }
+        $data->each(function($item) {
+            /* @var \Rugaard\MetaScraper\Meta $item */
+            $properties = explode(':', $item->getName());
 
-    /**
-     * Get iPhone details.
-     *
-     * @return array
-     */
-    public function getIPhone() : array
-    {
-        return (array) $this->iPhone;
-    }
-
-    /**
-     * Set iPad details.
-     *
-     * @param  string $field
-     * @param  string $value
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App
-     */
-    public function setIPad($field, $value) : App
-    {
-        $this->iPad[$field] = $value;
-        return $this;
-    }
-
-    /**
-     * Get iPad details.
-     *
-     * @return array
-     */
-    public function getIPad() : array
-    {
-        return (array) $this->iPad;
-    }
-
-    /**
-     * Set Google Play details.
-     *
-     * @param  string $field
-     * @param  string $value
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App
-     */
-    public function setGooglePlay($field, $value) : App
-    {
-        $this->googlePlay[$field] = $value;
-        return $this;
-    }
-
-    /**
-     * Get Google Play details
-     *
-     * @return array
-     */
-    public function getGooglePlay() : array
-    {
-        return (array) $this->googlePlay;
-    }
-
-    /**
-     * Set App country.
-     *
-     * @param  string $country
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App
-     */
-    public function setCountry($country) : App
-    {
-        $this->country = $country;
-        return $this;
-    }
-
-    /**
-     * Get App country.
-     *
-     * @return string
-     */
-    public function getCountry() : string
-    {
-        return $this->country;
+            $property = count($properties) > 1 ? $properties[1] : 'url';
+            switch($property) {
+                case 'id':
+                case 'name':
+                case 'url':
+                    $device = $properties[2] == 'googleplay' ? 'google_play' : $properties[2];
+                    $this->attributes[$device][$property] = $item->getValue();
+                    break;
+                default:
+                    $this->attributes[$property] = $item->getValue();
+            }
+        });
     }
 }

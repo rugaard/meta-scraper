@@ -8,11 +8,12 @@ use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Fitness;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Place;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class FitnessTest.
  */
-class FitnessTest extends AbstractObjectTestCase
+class FitnessTest extends AbstractOpenGraphTestCase
 {
     /**
      * Fitness instance
@@ -283,6 +284,8 @@ class FitnessTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

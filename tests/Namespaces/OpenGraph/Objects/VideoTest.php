@@ -7,11 +7,12 @@ use DateTime;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Video;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class VideoTest.
  */
-class VideoTest extends AbstractObjectTestCase
+class VideoTest extends AbstractOpenGraphTestCase
 {
     /**
      * Video instance
@@ -187,6 +188,8 @@ class VideoTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

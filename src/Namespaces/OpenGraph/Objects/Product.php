@@ -4,13 +4,14 @@ declare (strict_types = 1);
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
 use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
 
 /**
  * Class Product.
  *
  * @package Rugaard\MetaScraper\Namespaces\OpenGraph\Objects
  */
-class Product extends AbstractObject
+class Product extends Item
 {
     /**
      * Parse product object.

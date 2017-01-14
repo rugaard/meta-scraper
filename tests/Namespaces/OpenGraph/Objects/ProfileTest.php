@@ -6,11 +6,12 @@ namespace Tests\Namespaces\OpenGraph\Objects;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Profile;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class ProfileTest.
  */
-class ProfileTest extends AbstractObjectTestCase
+class ProfileTest extends AbstractOpenGraphTestCase
 {
     /**
      * Profile instance
@@ -113,6 +114,8 @@ class ProfileTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

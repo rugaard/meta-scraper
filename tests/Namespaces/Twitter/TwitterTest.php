@@ -3,15 +3,15 @@ declare (strict_types = 1);
 
 namespace Tests\Namespaces\Twitter;
 
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Collection;
-use Rugaard\MetaScraper\Namespaces\Twitter\Twitter;
-use Tests\AbstractTestCase;
+use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App;
+use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Image;
+use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player;
 
 /**
  * Class TwitterTest.
  */
-class TwitterTest extends AbstractTestCase
+class TwitterTest extends AbstractTwitterTestCase
 {
     /**
      * Mocked trait object.
@@ -84,32 +84,42 @@ class TwitterTest extends AbstractTestCase
     }
 
     /**
-     * Prepare test case.
+     * Test method [testParseTwitterMediaTypes].
      *
      * @return void
      */
-    public function setUp()
+    public function testParseTwitterMediaTypes()
     {
-        parent::setUp();
+        $openGraphData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['twitter']);
+        $this->invokeMethod($this->trait, 'parseTwitterMediaTypes', [$openGraphData]);
 
-        $this->trait = $this->createPartialMock(get_class($this->getMockForTrait(Twitter::class)), ['getAllByNamespace']);
-        $this->trait->method('getAllByNamespace')->will($this->returnCallback(function ($namespace) {
-            return $this->invokeMethod($this->scraper, 'getAllByNamespace', [$namespace]);
-        }));
+        $data = $this->trait->getTwitter();
 
-        $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
-        ]))->load('http://127.0.0.1');
+        $this->assertNotEmpty($data);
+        $this->assertInternalType('array', $data);
+        $this->assertCount(3, $data);
+
+        $this->assertArrayHasKey('app', $data);
+        $this->assertInstanceOf(App::class, $data['app']);
+
+        $this->assertArrayHasKey('image', $data);
+        $this->assertInstanceOf(Image::class, $data['image']);
+
+        $this->assertArrayHasKey('player', $data);
+        $this->assertInstanceOf(Player::class, $data['player']);
     }
 
     /**
-     * Reset test case.
+     * Test method [parseTwitterMediaTypes] can handle an empty Collection.
      *
      * @return void
      */
-    public function tearDown()
+    public function testParseTwitterMediaTypesIsEmpty()
     {
-        parent::tearDown();
-        unset($this->trait);
+        $this->invokeMethod($this->trait, 'parseTwitterMediaTypes', [new Collection]);
+
+        $data = $this->trait->getTwitter();
+
+        $this->assertEmpty($data);
     }
 }

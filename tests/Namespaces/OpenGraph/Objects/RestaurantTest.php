@@ -6,11 +6,12 @@ namespace Tests\Namespaces\OpenGraph\Objects;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Restaurant;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class RestaurantTest.
  */
-class RestaurantTest extends AbstractObjectTestCase
+class RestaurantTest extends AbstractOpenGraphTestCase
 {
     /**
      * Restaurant instance
@@ -298,6 +299,8 @@ class RestaurantTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

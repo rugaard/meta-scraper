@@ -6,11 +6,12 @@ namespace Tests\Namespaces\OpenGraph\Objects;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Place;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class PlaceTest.
  */
-class PlaceTest extends AbstractObjectTestCase
+class PlaceTest extends AbstractOpenGraphTestCase
 {
     /**
      * Place instance
@@ -100,6 +101,8 @@ class PlaceTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 

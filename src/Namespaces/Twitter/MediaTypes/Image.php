@@ -3,69 +3,36 @@ declare (strict_types = 1);
 
 namespace Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes;
 
+use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
+
 /**
  * Class Image.
  *
  * @package Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes
  */
-class Image extends AbstractMediaType
+class Image extends Item
 {
     /**
-     * URL of image.
+     * Parse image data.
      *
-     * @var string
+     * @param  \Illuminate\Support\Collection $data
+     * @return void
      */
-    protected $url;
-
-    /**
-     * Description of image (aka. "alt").
-     *
-     * @var int
-     */
-    protected $description;
-
-
-    /**
-     * Set URL of image.
-     *
-     * @param  string $url
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\AbstractMediaType
-     */
-    public function setUrl(string $url) : AbstractMediaType
+    protected function parse(Collection $data)
     {
-        $this->url = $url;
-        return $this;
-    }
+        $data->each(function($item) {
+            /* @var \Rugaard\MetaScraper\Meta $item */
+            $properties = explode(':', $item->getName());
 
-    /**
-     * Get URL of image.
-     *
-     * @return string
-     */
-    public function getUrl() : string
-    {
-        return (string) $this->url;
-    }
-
-    /**
-     * Set description of image (aka. "alt").
-     *
-     * @param  string $description
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\AbstractMediaType
-     */
-    public function setDescription(string $description) : AbstractMediaType
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    /**
-     * Get description of image (aka. "alt").
-     *
-     * @return string
-     */
-    public function getDescription() : string
-    {
-        return (string) $this->description;
+            $property = count($properties) > 1 ? $properties[1] : 'url';
+            switch($property) {
+                case 'alt':
+                    $this->attributes['description'] = $item->getValue();
+                    break;
+                default:
+                    $this->attributes[$property] = $item->getValue();
+            }
+        });
     }
 }

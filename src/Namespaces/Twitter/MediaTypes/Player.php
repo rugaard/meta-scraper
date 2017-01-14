@@ -3,156 +3,40 @@ declare (strict_types = 1);
 
 namespace Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes;
 
+use Illuminate\Support\Collection;
+use Rugaard\MetaScraper\Contracts\Item;
+
 /**
  * Class Player.
  *
  * @package Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes
  */
-class Player extends AbstractMediaType
+class Player extends Item
 {
     /**
-     * URL of player.
+     * Parse player data.
      *
-     * @var string
+     * @param  \Illuminate\Support\Collection $data
+     * @return void
      */
-    protected $url;
-
-    /**
-     * Width of player
-     *
-     * @var int
-     */
-    protected $width;
-
-    /**
-     * Height of player
-     *
-     * @var int
-     */
-    protected $height;
-
-    /**
-     * URL of video to stream
-     *
-     * @var string
-     */
-    protected $videoUrl;
-
-    /**
-     * Content-Type of video to stream
-     *
-     * @var string
-     */
-    protected $videoType;
-
-
-    /**
-     * Set URL of player.
-     *
-     * @param  string $url
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\AbstractMediaType
-     */
-    public function setUrl(string $url) : AbstractMediaType
+    protected function parse(Collection $data)
     {
-        $this->url = $url;
-        return $this;
-    }
+        $data->each(function($item) {
+            /* @var \Rugaard\MetaScraper\Meta $item */
+            $properties = explode(':', $item->getName());
 
-    /**
-     * Get URL of player.
-     *
-     * @return string
-     */
-    public function getUrl() : string
-    {
-        return (string) $this->url;
-    }
-
-    /**
-     * Set width of player.
-     *
-     * @param  string $width
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player
-     */
-    public function setWidth(string $width) : Player
-    {
-        $this->width = (int) $width;
-        return $this;
-    }
-
-    /**
-     * Get width of player.
-     *
-     * @return int
-     */
-    public function getWidth() : int
-    {
-        return (int) $this->width;
-    }
-
-    /**
-     * Set height of player.
-     *
-     * @param string $height
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player
-     */
-    public function setHeight(string $height) : Player
-    {
-        $this->height = (int) $height;
-        return $this;
-    }
-
-    /**
-     * Get height of player.
-     *
-     * @return int
-     */
-    public function getHeight() : int
-    {
-        return (int) $this->height;
-    }
-
-    /**
-     * Set URL of video to stream.
-     *
-     * @param  string $videoUrl
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player
-     */
-    public function setVideoUrl(string $videoUrl) : Player
-    {
-        $this->videoUrl = $videoUrl;
-        return $this;
-    }
-
-    /**
-     * Get URL of video to stream.
-     *
-     * @return string
-     */
-    public function getVideoUrl() : string
-    {
-        return $this->videoUrl;
-    }
-
-    /**
-     * Set Content-Type of video to stream.
-     *
-     * @param  string $videoType
-     * @return \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player
-     */
-    public function setVideoType(string $videoType) : Player
-    {
-        $this->videoType = $videoType;
-        return $this;
-    }
-
-    /**
-     * Get Content-Type of video to stream.
-     *
-     * @return string
-     */
-    public function getVideoType() : string
-    {
-        return $this->videoType;
+            $property = count($properties) > 1 ? $properties[1] : 'url';
+            switch($property) {
+                case 'stream':
+                    if (count($properties) > 2 && $properties[2] == 'content_type') {
+                        $this->attributes[$property]['type'] = $item->getValue();
+                    } else {
+                        $this->attributes[$property]['url'] = $item->getValue();
+                    }
+                    break;
+                default:
+                    $this->attributes[$property] = $item->getValue();
+            }
+        });
     }
 }

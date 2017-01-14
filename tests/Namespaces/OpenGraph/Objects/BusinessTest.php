@@ -6,11 +6,12 @@ namespace Tests\Namespaces\OpenGraph\Objects;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Business;
+use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 
 /**
  * Class BusinessTest.
  */
-class BusinessTest extends AbstractObjectTestCase
+class BusinessTest extends AbstractOpenGraphTestCase
 {
     /**
      * Business instance
@@ -203,6 +204,8 @@ class BusinessTest extends AbstractObjectTestCase
     public function setUp()
     {
         parent::setUp();
+
+        $this->invokeMethod($this->trait, 'parseOpenGraphObjects', []);
 
         $data = $this->trait->getOpenGraph();
 
