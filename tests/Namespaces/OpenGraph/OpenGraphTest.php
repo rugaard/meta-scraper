@@ -62,44 +62,6 @@ class OpenGraphTest extends AbstractOpenGraphTestCase
     }
 
     /**
-     * Test method [parseOpenGraphMedia].
-     *
-     * @return void
-     *
-    public function testParseOpenGraphMedia()
-    {
-        $openGraphData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['og']);
-        $this->invokeMethod($this->trait, 'parseOpenGraphMedia', [$openGraphData]);
-
-        $data = $this->trait->getOpenGraph();
-
-        $this->assertNotEmpty($data);
-
-        $this->assertArrayHasKey('image', $data);
-        $this->assertEquals('http://example.com/image.jpg', $data['image'][0]->getUrl());
-        $this->assertEquals('https://example.com/image.jpg', $data['image'][0]->getSecureUrl());
-        $this->assertEquals('image/jpeg', $data['image'][0]->getMimeType());
-        $this->assertEquals(600, $data['image'][0]->getWidth());
-        $this->assertEquals(315, $data['image'][0]->getHeight());
-        $this->assertEquals('http://example.com/alternative.jpg', $data['image'][1]->getUrl());
-
-        $this->assertArrayHasKey('video', $data);
-        $this->assertEquals('http://example.com/video.mp4', $data['video'][0]->getUrl());
-        $this->assertEquals('https://example.com/video.mp4', $data['video'][0]->getSecureUrl());
-        $this->assertEquals('video/mp4', $data['video'][0]->getMimeType());
-        $this->assertEquals(600, $data['video'][0]->getWidth());
-        $this->assertEquals(400, $data['video'][0]->getHeight());
-        $this->assertEquals('http://example.com/alternative.mp4', $data['video'][1]->getUrl());
-
-        $this->assertArrayHasKey('audio', $data);
-        $this->assertEquals('http://example.com/audio.mp3', $data['audio'][0]->getUrl());
-        $this->assertEquals('https://example.com/audio.mp3', $data['audio'][0]->getSecureUrl());
-        $this->assertEquals('audio/mpeg', $data['audio'][0]->getMimeType());
-        $this->assertEquals('http://example.com/alternative.mp3', $data['audio'][1]->getUrl());
-    }
-     */
-
-    /**
      * Test method [parseOpenGraphMedia] can handle an empty Collection.
      *
      * @return void
