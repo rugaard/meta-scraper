@@ -65,7 +65,7 @@ class OpenGraphTest extends AbstractOpenGraphTestCase
      * Test method [parseOpenGraphMedia].
      *
      * @return void
-     */
+     *
     public function testParseOpenGraphMedia()
     {
         $openGraphData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['og']);
@@ -97,6 +97,7 @@ class OpenGraphTest extends AbstractOpenGraphTestCase
         $this->assertEquals('audio/mpeg', $data['audio'][0]->getMimeType());
         $this->assertEquals('http://example.com/alternative.mp3', $data['audio'][1]->getUrl());
     }
+     */
 
     /**
      * Test method [parseOpenGraphMedia] can handle an empty Collection.
