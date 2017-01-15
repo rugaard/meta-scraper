@@ -125,19 +125,18 @@ abstract class AbstractTestCase extends TestCase
     <meta property="place:location:longitude" content="12.568337">
     <meta property="fb:app_id" content="1234567890">
     <meta property="fb:admins" content="12345678,87654321,13579,86420">
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="This is a Twitter title">
-    <meta property="twitter:description" content="This is a Twitter description">
-    <meta property="twitter:site" content="@twitter">
-    <meta property="twitter:creator" content="@DuGi">
-    <meta name="twitter:card" content="app">
-    <meta name="twitter:image" content="https://yoursite.com/example.png" />
-    <meta name="twitter:image:alt" content="This is an image alt" />
-    <meta name="twitter:player" content="https://yoursite.com/container.html" />
-    <meta name="twitter:player:width" content="480" />
-    <meta name="twitter:player:height" content="480" />
-    <meta name="twitter:player:stream" content="https://yoursite.com/example.mp4" />
-    <meta name="twitter:player:stream:content_type" content="video/mp4" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="This is a Twitter title">
+    <meta name="twitter:description" content="This is a Twitter description">
+    <meta name="twitter:site" content="@twitter">
+    <meta name="twitter:creator" content="@DuGi">
+    <meta name="twitter:image" content="https://yoursite.com/example.png">
+    <meta name="twitter:image:alt" content="This is an image alt">
+    <meta name="twitter:player" content="https://yoursite.com/container.html">
+    <meta name="twitter:player:width" content="480">
+    <meta name="twitter:player:height" content="480">
+    <meta name="twitter:player:stream" content="https://yoursite.com/example.mp4">
+    <meta name="twitter:player:stream:content_type" content="video/mp4">
     <meta name="twitter:app:country" content="US">
     <meta name="twitter:app:name:iphone" content="Cannonball">
     <meta name="twitter:app:id:iphone" content="929750075">

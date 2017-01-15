@@ -27,6 +27,10 @@ class Player extends Item
 
             $property = count($properties) > 1 ? $properties[1] : 'url';
             switch($property) {
+                case 'width':
+                case 'height':
+                    $this->attributes[$property] = (int) $item->getValue();
+                    break;
                 case 'stream':
                     if (count($properties) > 2 && $properties[2] == 'content_type') {
                         $this->attributes[$property]['type'] = $item->getValue();

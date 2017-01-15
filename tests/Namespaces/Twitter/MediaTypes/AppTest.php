@@ -3,7 +3,6 @@ declare (strict_types = 1);
 
 namespace Tests\Namespaces\Twitter\MediaTypes;
 
-use Illuminate\Support\Collection;
 use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 use Rugaard\MetaScraper\Exceptions\MethodNotFoundException;
 use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App;
@@ -65,6 +64,7 @@ class AppTest extends AbstractTwitterTestCase
         $this->assertEquals('Cannonball', $iPhone['name']);
 
         $this->assertArrayHasKey('url', $iPhone);
+        $this->assertNotFalse(filter_var($iPhone['url'], FILTER_VALIDATE_URL));
         $this->assertEquals('cannonball://poem/5149e249222f9e600a7540ef', $iPhone['url']);
     }
 
@@ -88,6 +88,7 @@ class AppTest extends AbstractTwitterTestCase
         $this->assertEquals('Cannonball', $iPad['name']);
 
         $this->assertArrayHasKey('url', $iPad);
+        $this->assertNotFalse(filter_var($iPad['url'], FILTER_VALIDATE_URL));
         $this->assertEquals('cannonball://poem/5149e249222f9e600a7540ef', $iPad['url']);
     }
 
@@ -111,6 +112,7 @@ class AppTest extends AbstractTwitterTestCase
         $this->assertEquals('Cannonball', $googlePlay['name']);
 
         $this->assertArrayHasKey('url', $googlePlay);
+        $this->assertNotFalse(filter_var($googlePlay['url'], FILTER_VALIDATE_URL));
         $this->assertEquals('http://cannonball.fabric.io/poem/5149e249222f9e600a7540ef', $googlePlay['url']);
     }
 

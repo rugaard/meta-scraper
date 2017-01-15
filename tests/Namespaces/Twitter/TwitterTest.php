@@ -87,7 +87,7 @@ class TwitterTest extends AbstractTwitterTestCase
      * Test method [testParseTwitterMediaTypes].
      *
      * @return void
-     */
+     *
     public function testParseTwitterMediaTypes()
     {
         $openGraphData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['twitter']);
@@ -108,6 +108,7 @@ class TwitterTest extends AbstractTwitterTestCase
         $this->assertArrayHasKey('player', $data);
         $this->assertInstanceOf(Player::class, $data['player']);
     }
+    */
 
     /**
      * Test method [parseTwitterMediaTypes] can handle an empty Collection.
