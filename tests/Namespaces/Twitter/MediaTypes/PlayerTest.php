@@ -127,7 +127,7 @@ class PlayerTest extends AbstractTwitterTestCase
         parent::setUp();
 
         $twitterData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['twitter']);
-        $this->invokeMethod($this->trait, 'parseTwitterMediaTypes', [$twitterData]);
+        $this->invokeMethod($this->trait, 'parseTwitterMedia', [$twitterData]);
 
         $data = $this->trait->getTwitter();
 

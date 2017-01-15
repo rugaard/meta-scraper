@@ -29,6 +29,10 @@ class Video extends Item
             $property = count($properties) > 1 ? $properties[1] : 'url';
 
             switch ($property) {
+                case 'width':
+                case 'height':
+                    $this->attributes[$property] = (int) $item->getValue();
+                    break;
                 case 'type':
                     $this->attributes['mime_type'] = $item->getValue();
                     break;

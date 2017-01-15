@@ -86,7 +86,7 @@ class OpenGraphTest extends AbstractOpenGraphTestCase
         $this->assertArrayHasKey('video', $data);
         $this->assertEquals('http://example.com/video.mp4', $data['video'][0]->getUrl());
         $this->assertEquals('https://example.com/video.mp4', $data['video'][0]->getSecureUrl());
-        $this->assertEquals('video/mpeg', $data['video'][0]->getMimeType());
+        $this->assertEquals('video/mp4', $data['video'][0]->getMimeType());
         $this->assertEquals(600, $data['video'][0]->getWidth());
         $this->assertEquals(400, $data['video'][0]->getHeight());
         $this->assertEquals('http://example.com/alternative.mp4', $data['video'][1]->getUrl());

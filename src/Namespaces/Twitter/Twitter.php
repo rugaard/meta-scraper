@@ -36,7 +36,8 @@ trait Twitter
         // Parse all standard Twitter properties.
         $this->parseTwitterStandard($twitterTags);
 
-        $this->parseTwitterMediaTypes($twitterTags);
+        // Parse all Twitter media properties.
+        $this->parseTwitterMedia($twitterTags);
 
         return $this->getTwitter();
     }
@@ -71,12 +72,12 @@ trait Twitter
     }
 
     /**
-     * Parse Twitter media types.
+     * Parse Twitter media.
      *
      * @param  \Illuminate\Support\Collection $tags
      * @return void
      */
-    public function parseTwitterMediaTypes(Collection $tags)
+    public function parseTwitterMedia(Collection $tags)
     {
         foreach ($this->getTwitterMediaTypes() as $mediaType => $mediaTypeClass) {
             // Loop through our collection of tags and carefully

@@ -84,40 +84,13 @@ class TwitterTest extends AbstractTwitterTestCase
     }
 
     /**
-     * Test method [testParseTwitterMediaTypes].
-     *
-     * @return void
-     *
-    public function testParseTwitterMediaTypes()
-    {
-        $openGraphData = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['twitter']);
-        $this->invokeMethod($this->trait, 'parseTwitterMediaTypes', [$openGraphData]);
-
-        $data = $this->trait->getTwitter();
-
-        $this->assertNotEmpty($data);
-        $this->assertInternalType('array', $data);
-        $this->assertCount(3, $data);
-
-        $this->assertArrayHasKey('app', $data);
-        $this->assertInstanceOf(App::class, $data['app']);
-
-        $this->assertArrayHasKey('image', $data);
-        $this->assertInstanceOf(Image::class, $data['image']);
-
-        $this->assertArrayHasKey('player', $data);
-        $this->assertInstanceOf(Player::class, $data['player']);
-    }
-    */
-
-    /**
      * Test method [parseTwitterMediaTypes] can handle an empty Collection.
      *
      * @return void
      */
     public function testParseTwitterMediaTypesIsEmpty()
     {
-        $this->invokeMethod($this->trait, 'parseTwitterMediaTypes', [new Collection]);
+        $this->invokeMethod($this->trait, 'parseTwitterMedia', [new Collection]);
 
         $data = $this->trait->getTwitter();
 

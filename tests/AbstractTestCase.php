@@ -113,7 +113,7 @@ abstract class AbstractTestCase extends TestCase
     <meta property="og:image" content="http://example.com/alternative.jpg">
     <meta property="og:video" content="http://example.com/video.mp4">
     <meta property="og:video:secure_url" content="https://example.com/video.mp4">
-    <meta property="og:video:type" content="video/mpeg">
+    <meta property="og:video:type" content="video/mp4">
     <meta property="og:video:width" content="600">
     <meta property="og:video:height" content="400">
     <meta property="og:video" content="http://example.com/alternative.mp4">
