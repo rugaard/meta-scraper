@@ -1,17 +1,24 @@
 {
   "name": "rugaard/meta-scraper",
   "type": "library",
-  "description": "Scrape URL's for metadata, like Open Graph, Twitter Cards and more.",
+  "description": "Scrape URL's for meta data, like Open Graph, Twitter Cards and more.",
   "keywords": [
     "rugaard",
     "scraper",
-    "shareable",
-    "links",
+    "meta",
+    "namespaces",
     "open graph",
     "facebook",
-    "twitter"
+    "twitter",
+    "shareable",
+    "links"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/rugaard/meta-scraper",
+  "support": {
+    "issues": "https://github.com/rugaard/meta-scraper/issues",
+    "source": "https://github.com/rugaard/meta-scraper"
+  },
   "authors": [
     {
       "name": "Morten Rugaard",
