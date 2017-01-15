@@ -18,7 +18,7 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="Shareable Scraper Test Suite">
+        <testsuite name="Meta Scraper Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
