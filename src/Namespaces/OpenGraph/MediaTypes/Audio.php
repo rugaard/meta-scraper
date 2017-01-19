@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\MediaTypes;
 
@@ -21,7 +21,7 @@ class Audio extends Item
      */
     public function parse(Collection $data)
     {
-        $data->each(function($item) {
+        $data->each(function ($item) {
             /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
 

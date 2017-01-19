@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
@@ -22,10 +22,10 @@ class Book extends Item
     public function parse(Collection $data)
     {
         // Loop through collection and parse each entry.
-        $data->each(function($item) {
+        $data->each(function ($item) {
             /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
-            switch($properties[0]) {
+            switch ($properties[0]) {
                 case 'author':
                 case 'book':
                 case 'genre':

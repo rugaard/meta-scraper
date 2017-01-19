@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper;
 
@@ -98,8 +98,17 @@ class Scraper
         $data = new Collection;
 
         foreach (class_uses($this) as $trait) {
+            // Generate trait name
             $traitName = class_basename($trait);
-            $data->put(strtolower($traitName), call_user_func([$this, camel_case($traitName)]));
+
+            // Get data from trait
+            $traitData = call_user_func([$this, camel_case($traitName)]);
+            if (!$traitData) {
+                continue;
+            }
+
+            // Add trait data to collection
+            $data->put(strtolower($traitName), $traitData);
         }
 
         return $data;
@@ -113,7 +122,7 @@ class Scraper
      */
     protected function getAllByNamespace($namespace) : Collection
     {
-        return $this->getMetaTags()->reject(function($item) use ($namespace) {
+        return $this->getMetaTags()->reject(function ($item) use ($namespace) {
             /** @var \Rugaard\MetaScraper\Meta $item  **/
             return !$item->hasNamespace() || $item->getNamespace() != $namespace;
         });

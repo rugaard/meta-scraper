@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph;
 
@@ -142,7 +142,7 @@ trait OpenGraph
             // Iteration counter
             $iteration = 0;
 
-            $matches->each(function($item) use (&$images, &$iteration) {
+            $matches->each(function ($item) use (&$images, &$iteration) {
                 /* @var \Rugaard\MetaScraper\Meta $item */
                 $properties = explode(':', $item->getName());
 
@@ -153,10 +153,9 @@ trait OpenGraph
                 $images[$iteration][] = $item;
             });
 
-            collect($images)->each(function($image) use ($mediaType, $mediaTypeClass) {
+            collect($images)->each(function ($image) use ($mediaType, $mediaTypeClass) {
                 $this->openGraph[$mediaType][] = new $mediaTypeClass(new Collection($image));
             });
-
         }
     }
 

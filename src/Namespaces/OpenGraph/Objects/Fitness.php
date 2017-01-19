@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
@@ -27,7 +27,7 @@ class Fitness extends Item
         $metricsCount = null;
 
         // Loop through collection and parse each entry.
-        $data->each(function($item) use (&$metricsCount) {
+        $data->each(function ($item) use (&$metricsCount) {
             // Until proving otherwise ...
             $insideMetrics = false;
 
@@ -40,7 +40,7 @@ class Fitness extends Item
                 $insideMetrics = true;
             }
 
-            switch($properties[0]) {
+            switch ($properties[0]) {
                 case 'custom_unit_energy':
                 case 'distance':
                 case 'duration':

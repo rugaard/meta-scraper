@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes;
 
@@ -21,12 +21,12 @@ class Player extends Item
      */
     protected function parse(Collection $data)
     {
-        $data->each(function($item) {
+        $data->each(function ($item) {
             /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
 
             $property = count($properties) > 1 ? $properties[1] : 'url';
-            switch($property) {
+            switch ($property) {
                 case 'width':
                 case 'height':
                     $this->attributes[$property] = (int) $item->getValue();

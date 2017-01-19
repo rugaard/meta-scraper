@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Rugaard\MetaScraper\Namespaces\OpenGraph\Objects;
 
@@ -25,10 +25,10 @@ class Restaurant extends Item
         $keyManager = [];
 
         // Loop through collection and parse each entry.
-        $data->each(function($item) use (&$keyManager) {
+        $data->each(function ($item) use (&$keyManager) {
             /* @var \Rugaard\MetaScraper\Meta $item */
             $properties = explode(':', $item->getName());
-            switch($properties[0]) {
+            switch ($properties[0]) {
                 case 'contact_info':
                     $this->attributes[$properties[1]] = $item->getValue();
                     break;
