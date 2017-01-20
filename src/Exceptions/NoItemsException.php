@@ -6,7 +6,7 @@ namespace Rugaard\MetaScraper\Exceptions;
 use Exception;
 
 /**
- * Class NoItemsException
+ * Class NoItemsException.
  *
  * @package Rugaard\MetaScraper\Exceptions
  */

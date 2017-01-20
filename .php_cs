@@ -34,6 +34,7 @@ return Config::create()
         'phpdoc_var_without_name' => true,
         'short_scalar_cast' => true,
         'single_quote' => true,
+        'single_blank_line_before_namespace' => true,
         'switch_case_semicolon_to_colon' => true,
         'trailing_comma_in_multiline_array' => true,
         'trim_array_spaces' => true,

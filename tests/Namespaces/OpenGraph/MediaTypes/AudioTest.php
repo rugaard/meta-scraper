@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class AudioTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Array of audios
+     * Array of audios.
      *
      * @var array|null
      */

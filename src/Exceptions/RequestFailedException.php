@@ -6,7 +6,7 @@ namespace Rugaard\MetaScraper\Exceptions;
 use Exception;
 
 /**
- * Class RequestFailedException
+ * Class RequestFailedException.
  *
  * @package Rugaard\MetaScraper\Exceptions
  */

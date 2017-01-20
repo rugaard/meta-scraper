@@ -4,9 +4,6 @@ declare(strict_types=1);
 namespace Tests\Namespaces\Twitter;
 
 use Illuminate\Support\Collection;
-use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\App;
-use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Image;
-use Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Player;
 
 /**
  * Class TwitterTest.

@@ -7,8 +7,8 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Illuminate\Support\Collection;
-use Rugaard\MetaScraper\Exceptions\NoItemsException;
 use Rugaard\MetaScraper\Exceptions\InvalidUrlException;
+use Rugaard\MetaScraper\Exceptions\NoItemsException;
 use Rugaard\MetaScraper\Exceptions\RequestFailedException;
 use Rugaard\MetaScraper\Namespaces\Facebook\Facebook;
 use Rugaard\MetaScraper\Namespaces\OpenGraph\OpenGraph;
@@ -129,7 +129,7 @@ class Scraper
     }
 
     /**
-     * Extract all occurrences of tag from URL
+     * Extract all occurrences of tag from URL.
      *
      * @param  string $tag
      * @return array

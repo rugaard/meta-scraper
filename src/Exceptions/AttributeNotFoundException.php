@@ -6,7 +6,7 @@ namespace Rugaard\MetaScraper\Exceptions;
 use Exception;
 
 /**
- * Class AttributeNotFoundException
+ * Class AttributeNotFoundException.
  *
  * @package Rugaard\MetaScraper\Exceptions
  */

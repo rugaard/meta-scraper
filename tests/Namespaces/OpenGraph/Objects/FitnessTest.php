@@ -16,7 +16,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class FitnessTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Fitness instance
+     * Fitness instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Fitness|null
      */

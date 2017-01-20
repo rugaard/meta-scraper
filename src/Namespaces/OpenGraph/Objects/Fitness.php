@@ -69,7 +69,7 @@ class Fitness extends Item
                     // To inject data into the Place object, we need to "fake" that it's being inserted
                     // like it would be, as if it was it's own object instead of being nested.
                     $disguiseDataAsCollection = new Collection([
-                        new Meta(['name' => $item->getNameWithNamespace(), 'content' => $item->getValue()])
+                        new Meta(['name' => $item->getNameWithNamespace(), 'content' => $item->getValue()]),
                     ]);
 
                     $insideMetrics ? $this->attributes['metrics'][$metricsCount][$properties[0]]->parse($disguiseDataAsCollection)

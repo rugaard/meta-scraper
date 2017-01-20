@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class PlaceTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Place instance
+     * Place instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Place|null
      */

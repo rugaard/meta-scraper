@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 if (! function_exists('class_basename')) {
     /**
      * Get the class "basename" of the given object / class.
@@ -30,7 +32,7 @@ if (!function_exists('camel_case')) {
 
 if (!function_exists('snake_case')) {
     /**
-     * Convert string to snake_case
+     * Convert string to snake_case.
      *
      * @param  string $string
      * @return string
@@ -38,7 +40,7 @@ if (!function_exists('snake_case')) {
     function snake_case(string $string)
     {
         return strtolower(
-            preg_replace('/(?<=\\w)(?=[A-Z])/', "_$1", substr($string, 3))
+            preg_replace('/(?<=\\w)(?=[A-Z])/', '_$1', substr($string, 3))
         );
     }
 }

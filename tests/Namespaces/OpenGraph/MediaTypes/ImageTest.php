@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class ImageTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Array of images
+     * Array of images.
      *
      * @var array|null
      */

@@ -15,7 +15,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class VideoTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Video instance
+     * Video instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Video|null
      */

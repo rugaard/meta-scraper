@@ -6,7 +6,7 @@ namespace Rugaard\MetaScraper\Exceptions;
 use Exception;
 
 /**
- * Class MethodNotFoundException
+ * Class MethodNotFoundException.
  *
  * @package Rugaard\MetaScraper\Exceptions
  */

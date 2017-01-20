@@ -29,7 +29,7 @@ abstract class AbstractOpenGraphTestCase extends AbstractTestCase
         parent::setUp();
 
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
 
         $this->trait = $this->createPartialMock(get_class($this->getMockForTrait(OpenGraph::class)), ['getAllByNamespace']);

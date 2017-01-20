@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class GameTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Game instance
+     * Game instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Game|null
      */

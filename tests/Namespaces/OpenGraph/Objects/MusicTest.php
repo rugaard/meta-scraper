@@ -15,7 +15,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class MusicTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Music instance
+     * Music instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Music|null
      */

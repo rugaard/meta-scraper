@@ -58,7 +58,7 @@ class ScraperTest extends AbstractTestCase
     public function testExceptionOnFailedRequest()
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleRequestException('Error communicating with server', new GuzzleRequest('GET', '127.0.0.1'))
+            new GuzzleRequestException('Error communicating with server', new GuzzleRequest('GET', '127.0.0.1')),
         ]));
 
         $this->expectException(RequestFailedException::class);
@@ -73,7 +73,7 @@ class ScraperTest extends AbstractTestCase
     public function testGetAllParsedData()
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
 
         $data = $this->scraper->all();
@@ -129,7 +129,7 @@ class ScraperTest extends AbstractTestCase
         $this->assertNotEmpty($attributes);
         $this->assertEquals([
             'property' => 'og:title',
-            'content' => 'This is an Open Graph title'
+            'content' => 'This is an Open Graph title',
         ], $attributes);
     }
 
@@ -153,7 +153,7 @@ class ScraperTest extends AbstractTestCase
     public function testMethodLoad()
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
 
         $this->assertInstanceOf(Collection::class, $this->scraper->getMetaTags());
@@ -169,7 +169,7 @@ class ScraperTest extends AbstractTestCase
     public function testMethodGetAllByNamespace()
     {
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
 
         $tags = $attributes = $this->invokeMethod($this->scraper, 'getAllByNamespace', ['og']);

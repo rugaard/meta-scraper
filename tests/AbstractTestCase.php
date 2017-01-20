@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use ReflectionClass;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler as GuzzleMockHandler;
 use GuzzleHttp\HandlerStack as GuzzleHandlerStack;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use Rugaard\MetaScraper\Scraper;
 
 /**
@@ -16,7 +16,7 @@ use Rugaard\MetaScraper\Scraper;
 abstract class AbstractTestCase extends TestCase
 {
     /**
-     * Scraper instance
+     * Scraper instance.
      *
      * @var \Rugaard\MetaScraper\Scraper
      */
@@ -57,7 +57,7 @@ abstract class AbstractTestCase extends TestCase
      * @param  array  $parameters
      * @return mixed
      */
-    public function invokeMethod(&$object, $methodName, array $parameters = array())
+    public function invokeMethod(&$object, $methodName, array $parameters = [])
     {
         $reflection = new ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
@@ -77,7 +77,7 @@ abstract class AbstractTestCase extends TestCase
         return new GuzzleClient([
             'handler' => GuzzleHandlerStack::create(
                 new GuzzleMockHandler($responses)
-            )
+            ),
         ]);
     }
 

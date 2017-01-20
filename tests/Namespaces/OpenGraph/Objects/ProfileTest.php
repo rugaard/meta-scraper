@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class ProfileTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Profile instance
+     * Profile instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Profile|null
      */

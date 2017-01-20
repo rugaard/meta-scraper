@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class VideoTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Array of videos
+     * Array of videos.
      *
      * @var array|null
      */

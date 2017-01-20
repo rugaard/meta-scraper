@@ -15,7 +15,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class BookTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Book instance
+     * Book instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Book|null
      */
@@ -48,7 +48,7 @@ class BookTest extends AbstractOpenGraphTestCase
         $this->assertNotFalse(filter_var($authors[1], FILTER_VALIDATE_URL));
         $this->assertEquals([
             'http://example.com/author-1',
-            'http://example.com/author-2'
+            'http://example.com/author-2',
         ], $authors);
     }
 
@@ -81,7 +81,7 @@ class BookTest extends AbstractOpenGraphTestCase
         $this->assertNotFalse(filter_var($books[1], FILTER_VALIDATE_URL));
         $this->assertEquals([
             'http://example.com/book-1',
-            'http://example.com/book-2'
+            'http://example.com/book-2',
         ], $books);
     }
 
@@ -101,7 +101,7 @@ class BookTest extends AbstractOpenGraphTestCase
         $this->assertNotFalse(filter_var($genres[1], FILTER_VALIDATE_URL));
         $this->assertEquals([
             'http://example.com/genre-1',
-            'http://example.com/genre-2'
+            'http://example.com/genre-2',
         ], $genres);
     }
 
@@ -177,7 +177,7 @@ class BookTest extends AbstractOpenGraphTestCase
         $this->assertArrayHasKey('scale', $rating);
         $this->assertArraySubset([
             'value' => 0.78,
-            'scale' => 1
+            'scale' => 1,
         ], $rating);
     }
 

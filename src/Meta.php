@@ -134,7 +134,7 @@ class Meta
     }
 
     /**
-     * Get name of meta tag
+     * Get name of meta tag.
      *
      * @return string
      */

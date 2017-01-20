@@ -14,7 +14,7 @@ use Tests\Namespaces\Twitter\AbstractTwitterTestCase;
 class ImageTest extends AbstractTwitterTestCase
 {
     /**
-     * Image instance
+     * Image instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\Twitter\MediaTypes\Image|null
      */

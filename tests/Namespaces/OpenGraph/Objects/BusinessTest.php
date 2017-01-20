@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class BusinessTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Business instance
+     * Business instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Business|null
      */

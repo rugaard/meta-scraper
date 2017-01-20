@@ -6,7 +6,7 @@ namespace Rugaard\MetaScraper\Exceptions;
 use Exception;
 
 /**
- * Class InvalidUrlException
+ * Class InvalidUrlException.
  *
  * @package Rugaard\MetaScraper\Exceptions
  */

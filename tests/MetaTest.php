@@ -12,7 +12,7 @@ use Rugaard\MetaScraper\Exceptions\AttributeNotFoundException;
 class MetaTest extends AbstractTestCase
 {
     /**
-     * Meta instance
+     * Meta instance.
      *
      * @var \Rugaard\MetaScraper\Meta
      */
@@ -140,7 +140,7 @@ class MetaTest extends AbstractTestCase
         parent::setUp();
 
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
 
         $this->meta = $this->scraper->getMetaTags()->slice(1, 1)->first();

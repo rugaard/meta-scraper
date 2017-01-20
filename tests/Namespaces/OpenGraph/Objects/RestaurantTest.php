@@ -14,7 +14,7 @@ use Tests\Namespaces\OpenGraph\AbstractOpenGraphTestCase;
 class RestaurantTest extends AbstractOpenGraphTestCase
 {
     /**
-     * Restaurant instance
+     * Restaurant instance.
      *
      * @var \Rugaard\MetaScraper\Namespaces\OpenGraph\Objects\Restaurant|null
      */

@@ -106,7 +106,7 @@ class FacebookTest extends AbstractTestCase
         }));
 
         $this->scraper->setClient($this->createMockedGuzzleClient([
-            new GuzzleResponse(200, [], $this->getMockedResponse())
+            new GuzzleResponse(200, [], $this->getMockedResponse()),
         ]))->load('http://127.0.0.1');
     }
 
