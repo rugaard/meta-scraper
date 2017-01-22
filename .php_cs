@@ -14,7 +14,6 @@ return Config::create()
         'declare_equal_normalize' => true,
         'declare_strict_types' => true,
         'function_typehint_space' => true,
-        'general_phpdoc_annotation_remove' => true,
         'hash_to_slash_comment' => true,
         'linebreak_after_opening_tag' => true,
         'lowercase_cast' => true,

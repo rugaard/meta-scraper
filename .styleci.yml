@@ -1,0 +1,30 @@
+preset: psr2
+
+risky: true
+
+enabled:
+  - alpha_ordered_imports
+  - combine_consecutive_unsets
+  - concat_with_spaces
+  - declare_equal_normalize
+  - declare_strict_types
+  - function_typehint_space
+  - hash_to_slash_comment
+  - lowercase_cast
+  - no_trailing_comma_in_list_call
+  - no_trailing_comma_in_singleline_array
+  - no_unused_imports
+  - no_useless_return
+  - phpdoc_add_missing_param_annotation
+  - phpdoc_indent
+  - phpdoc_inline_tag
+  - phpdoc_scalar
+  - phpdoc_summary
+  - phpdoc_trim
+  - phpdoc_var_without_name
+  - short_array_syntax
+  - short_scalar_cast
+  - single_quote
+  - single_blank_line_before_namespace
+  - trailing_comma_in_multiline_array
+  - trim_array_spaces
