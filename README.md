@@ -1,8 +1,9 @@
 <p align="center">
-<a href="https://travis-ci.org/rugaard/meta-scraper"><img src="https://travis-ci.org/rugaard/meta-scraper.svg?branch=master" alt="Build Status"></a>
-<a href="https://codecov.io/gh/rugaard/meta-scraper"><img src="https://codecov.io/gh/rugaard/meta-scraper/branch/master/graph/badge.svg" alt="Codecov"></a>
-<a href="https://packagist.org/packages/rugaard/meta-scraper"><img src="https://poser.pugx.org/rugaard/meta-scraper/v/stable" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/rugaard/meta-scraper"><img src="https://poser.pugx.org/rugaard/meta-scraper/license.svg" alt="License"></a>
+    <a href="https://travis-ci.org/rugaard/meta-scraper"><img src="https://travis-ci.org/rugaard/meta-scraper.svg?branch=master" alt="Build status"></a>
+    <a href="https://codecov.io/gh/rugaard/meta-scraper"><img src="https://codecov.io/gh/rugaard/meta-scraper/branch/master/graph/badge.svg" alt="Codecov status"></a>
+    <a href="https://styleci.io/repos/77235759"><img src="https://styleci.io/repos/77235759/shield?branch=master" alt="StyleCI status"></a>
+    <a href="https://packagist.org/packages/rugaard/meta-scraper"><img src="https://poser.pugx.org/rugaard/meta-scraper/v/stable" alt="Latest Stable version"></a>
+    <a href="https://packagist.org/packages/rugaard/meta-scraper"><img src="https://poser.pugx.org/rugaard/meta-scraper/license.svg" alt="License"></a>
 </p>
 
 ## 📝 Introduction
